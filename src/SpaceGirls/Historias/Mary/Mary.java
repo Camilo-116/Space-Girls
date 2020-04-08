@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Estructura;
+package SpaceGirls.Historias.Mary;
 
+import Estructura.Historia;
 import java.util.ArrayList;
 
 /**
  *
  * @author Camilo Cespedes
  */
-public abstract class Personaje {
-    ArrayList<Vista>vistas;
-    
-    public Personaje(){
-        
+public class Mary extends Historia{
+    ArrayList<Mueble>elementos;
+    public Mary(){
+        super();
     }
 }

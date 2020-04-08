@@ -5,10 +5,12 @@
  */
 package Estructura;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Camilo Cespedes
  */
  class NPC extends Personaje {
-    
+    ImageIcon apariencia;
 }

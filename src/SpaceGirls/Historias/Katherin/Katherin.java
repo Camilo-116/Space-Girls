@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package SpaceGirls.Historias;
+package SpaceGirls.Historias.Katherin;
 
 import Estructura.Historia;
 
@@ -11,8 +11,8 @@ import Estructura.Historia;
  *
  * @author Camilo Cespedes
  */
-public class Dorothy extends Historia{
-    public Dorothy(){
+public class Katherin extends Historia {
+    public Katherin (){
         super();
     }
     

@@ -3,17 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package SpaceGirls.Historias;
+package Estructura;
 
-import Estructura.Historia;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author Camilo Cespedes
  */
-public class Katherin extends Historia {
-    public Katherin (){
-        super();
-    }
-    
+class Vista {
+    ImageIcon apariencia;
 }
