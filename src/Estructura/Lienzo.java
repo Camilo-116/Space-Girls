@@ -3,19 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package HistoriaKatherin;
+package Estructura;
+
+import java.util.ArrayList;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Camilo Cespedes
  */
-public class Katherin {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+public class Lienzo extends JPanel {
+    ArrayList<Historia> historias;
+    public Lienzo (){
+        
     }
-    
 }

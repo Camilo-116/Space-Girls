@@ -3,12 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package HistoriaDorothy;
+package SpaceGirls.Historias;
+
+import Estructura.Historia;
 
 /**
  *
  * @author Camilo Cespedes
  */
-public class Dorothy {
+public class Dorothy extends Historia{
+    public Dorothy(){
+        super();
+    }
     
 }

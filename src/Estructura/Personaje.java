@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package HitoriaMary;
+package Estructura;
 
 /**
  *
  * @author Camilo Cespedes
  */
-public class Mary {
-    
+class Personaje {
+    public Personaje(){
+        
+    }
 }
