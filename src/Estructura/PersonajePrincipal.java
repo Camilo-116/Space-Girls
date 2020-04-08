@@ -9,10 +9,6 @@ package Estructura;
  *
  * @author Camilo Cespedes
  */
-public abstract class Personaje {
+class PersonajePrincipal extends Personaje {
     
-    
-    public Personaje(){
-        
-    }
 }
