@@ -11,6 +11,16 @@ import javax.swing.ImageIcon;
  *
  * @author Camilo Cespedes
  */
- class NPC extends Personaje {
+public class NPC  {
     ImageIcon apariencia;
+
+    public NPC(ImageIcon apariencia) {
+        this.apariencia = apariencia;
+    }
+    public NPC(){ 
+    
+    }
+        
+   
+    
 }

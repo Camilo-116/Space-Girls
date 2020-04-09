@@ -3,18 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Estructura;
+package SpaceGirls.Historias.Mary;
 
-import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author Camilo Cespedes
  */
-public abstract class Personaje {
-    ArrayList<Vista>vistas;
-    
-    public Personaje(){
-        
-    }
+class Objeto {
+    ImageIcon apariencia;
 }

@@ -6,14 +6,16 @@
 package SpaceGirls.Historias.Dorothy;
 
 import Estructura.Historia;
+import Estructura.PersonajePrincipal;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author Camilo Cespedes
  */
 public class Dorothy extends Historia{
-    public Dorothy(){
-        super();
+    public Dorothy(ImageIcon background, PersonajePrincipal personajePrincipal){
+        super( background,  personajePrincipal);
     }
     
 }

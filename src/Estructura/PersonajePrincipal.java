@@ -5,10 +5,17 @@
  */
 package Estructura;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Camilo Cespedes
  */
-class PersonajePrincipal extends Personaje {
-    
+public class PersonajePrincipal {
+    ArrayList<Vista>vistas;
+    public PersonajePrincipal (Vista vista1){
+        for (Vista vista : vistas) {
+            vista=vista1;
+        }
+    }
 }

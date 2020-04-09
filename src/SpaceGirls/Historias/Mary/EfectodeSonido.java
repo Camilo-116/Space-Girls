@@ -3,14 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Estructura;
+package SpaceGirls.Historias.Mary;
+
+import java.applet.AudioClip;
 
 /**
  *
  * @author Camilo Cespedes
  */
-class Interactivo {
-    public Interactivo(){
-        
+class EfectodeSonido {
+    AudioClip efecto;
+    public EfectodeSonido (AudioClip efecto){
+        this.efecto=efecto;
     }
 }

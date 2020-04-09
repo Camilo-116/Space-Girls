@@ -6,15 +6,30 @@
 package SpaceGirls.Historias.Mary;
 
 import Estructura.Historia;
+import Estructura.PersonajePrincipal;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author Camilo Cespedes
  */
 public class Mary extends Historia{
-    ArrayList<Mueble>elementos;
-    public Mary(){
-        super();
+    ArrayList<Mueble>muebles;
+    ArrayList<EfectodeSonido>efectosdeSonido;
+    
+    
+    public Mary(Mueble m, EfectodeSonido ef, ImageIcon background, PersonajePrincipal personajePrincipal){
+        super(background, personajePrincipal);
+        for (Mueble mu : muebles) {
+            mu.apariencia=m.apariencia;
+            mu.ancho=m.ancho;
+            mu.alto=m.alto;
+            mu.radioInteraccion=m.radioInteraccion;
+        }
+        for (EfectodeSonido e : efectosdeSonido) {
+            e.efecto=ef.efecto;
+        }
     }
+    
 }

@@ -7,15 +7,26 @@ package Estructura;
 
 import Estructura.Lienzo;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author Camilo Cespedes
  */
 public abstract class Historia extends Lienzo {
-    ArrayList<Interactivo> interactivos;
-    ArrayList<Personaje> personajes;
-    public Historia () {
-    
+    PersonajePrincipal personajePrincipal;
+    ArrayList<NPC>NPCS;
+    ImageIcon background;
+    public Historia (ImageIcon background, PersonajePrincipal personajePrincipal) {
+        this.personajePrincipal=personajePrincipal;
+        this.background=background;
+        NPC listaNPCS = new NPC();
+    }
+    public Historia (ImageIcon background, PersonajePrincipal personajePrincipal, NPC listaNPCS) {
+        this.personajePrincipal=personajePrincipal;
+        this.background=background;
+        for (NPC npc : NPCS) {
+            npc.apariencia=listaNPCS.apariencia;
+        }
     }
 }

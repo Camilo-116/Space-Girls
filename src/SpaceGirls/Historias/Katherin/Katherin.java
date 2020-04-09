@@ -6,14 +6,17 @@
 package SpaceGirls.Historias.Katherin;
 
 import Estructura.Historia;
+import Estructura.NPC;
+import Estructura.PersonajePrincipal;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author Camilo Cespedes
  */
 public class Katherin extends Historia {
-    public Katherin (){
-        super();
+    public Katherin (ImageIcon background, PersonajePrincipal personajePrincipal, NPC listaNPCS){
+        super( background,  personajePrincipal,  listaNPCS);
     }
     
 }
