@@ -15,9 +15,10 @@ import javax.swing.*;
  */
 public class Katherin extends Historia{
     HistoriaKatherin hist;
+    AreaK areak;
     Personaje per;
     int x, y;
-    int width, height;
+    int width = 100, height = 100;
     
     Boolean colision = false, colTop = false, colBottom = false, colLeft = false, colRigth = false;
     
@@ -33,20 +34,27 @@ public class Katherin extends Historia{
         addArea(new Area(843, 557, 520, 280));
         addArea(new Area(989, 72, 428, 93));
         addArea(new Area(993, 265, 201, 65));
+        areak = new AreaK(x, width, 222, height);
     }
     
     public void Dibujar (Graphics g, int x, int y, String dir){
         this.x = x;
         this.y = y;
         ImageIcon imgKat = new ImageIcon(dir);
-        this.width = imgKat.getImage().getWidth(null);
-        this.height = imgKat.getImage().getHeight(null);
         hist.paint(g,imgKat.getImage(), x, y );
         /*
         //per.update(imgKat, x, y);
         System.out.println("Si lo llama");
         g.drawImage (imgKat.getImage(), x, y, hist);*/
         
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
     }
 
     public int getX() {

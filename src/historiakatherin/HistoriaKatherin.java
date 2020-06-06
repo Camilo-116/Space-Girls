@@ -67,7 +67,9 @@ public class HistoriaKatherin extends javax.swing.JPanel {
         int key = evt.getKeyCode();
         switch (key) {
             case KeyEvent.VK_LEFT:
-                if (!katherin.isNextToSquare(x + katherin.getWidth() / 2 - 10, y + katherin.getHeight() / 2)) {
+                katherin.setWidth(96);
+                katherin.setHeight(123);
+                if (!katherin.isNextToSquare(x - 10, y + katherin.getHeight())) {
                     space = true;
                     x -= 10;
                     dir = "C:/Users/Camilo Cespedes/Documents/Universidad/Tercer semestre/Programacion orientada a objetos/Proyecto POO/Recursos/Personajes/K-L-Tes.png";
@@ -76,7 +78,9 @@ public class HistoriaKatherin extends javax.swing.JPanel {
                 }
                 break;
             case KeyEvent.VK_RIGHT:
-                if (!katherin.isNextToSquare(x + katherin.getWidth() / 2 + 10, y + katherin.getHeight() / 2)) {
+                katherin.setWidth(120);
+                katherin.setHeight(106);
+                if (!katherin.isNextToSquare(x + katherin.getWidth() + 10, y + katherin.getHeight())) {
                     space = true;
                     x += 10;
                     dir = "C:/Users/Camilo Cespedes/Documents/Universidad/Tercer semestre/Programacion orientada a objetos/Proyecto POO/Recursos/Personajes/K-R-Tes.png";
@@ -86,7 +90,9 @@ public class HistoriaKatherin extends javax.swing.JPanel {
                 
                 break;
             case KeyEvent.VK_UP:
-                if (!katherin.isNextToSquare(x + katherin.getWidth() / 2, y + katherin.getHeight() / 2 - 10)) {
+                katherin.setWidth(118);
+                katherin.setHeight(106);
+                if (!katherin.isNextToSquare(x + katherin.getWidth(), y - 10)) {
                     space = true;
                     y -= 10;
                     dir = "C:/Users/Camilo Cespedes/Documents/Universidad/Tercer semestre/Programacion orientada a objetos/Proyecto POO/Recursos/Personajes/K-B-Tes.png";
