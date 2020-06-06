@@ -17,7 +17,7 @@ public class Katherin extends Historia{
     HistoriaKatherin hist;
     Personaje per;
     int x, y;
-    int width = 100, height = 100;
+    int width, height;
     
     Boolean colision = false, colTop = false, colBottom = false, colLeft = false, colRigth = false;
     
@@ -39,6 +39,8 @@ public class Katherin extends Historia{
         this.x = x;
         this.y = y;
         ImageIcon imgKat = new ImageIcon(dir);
+        this.width = imgKat.getImage().getWidth(null);
+        this.height = imgKat.getImage().getHeight(null);
         hist.paint(g,imgKat.getImage(), x, y );
         /*
         //per.update(imgKat, x, y);

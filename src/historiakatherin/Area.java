@@ -12,7 +12,7 @@ package historiakatherin;
 public class Area {
     int x, y, width, height;
 
-    public Area(int x, int y, int width, int height) {
+    public Area(int x, int width, int y, int height) {
         this.x = x;
         this.y = y;
         this.width = width;

@@ -40,6 +40,8 @@ public class HisKatherin {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 frame = new VentanaDesarrollo();
+                frame.revalidate();
+                frame.repaint();
             }
         });
     }
