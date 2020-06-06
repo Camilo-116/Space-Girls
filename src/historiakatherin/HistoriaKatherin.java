@@ -6,6 +6,9 @@
 package historiakatherin;
 
 import com.sun.glass.events.KeyEvent;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -18,11 +21,18 @@ public class HistoriaKatherin extends javax.swing.JPanel {
     Boolean space = false;
 
     public HistoriaKatherin() {
+        super();
         initComponents();
+        setFocusable(true);
+        jLabel1.setVisible(true);
         katherin = new Katherin(this);
         personaje = new Personaje(katherin);
     }
-
+    public void paint (Graphics g, Image i, int x, int y){
+        super.paint(g);
+        g.drawImage(i, x, y, null);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -39,19 +49,10 @@ public class HistoriaKatherin extends javax.swing.JPanel {
                 formKeyPressed(evt);
             }
         });
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/OfficeK.jpg"))); // NOI18N
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1)
-        );
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
@@ -69,7 +70,7 @@ public class HistoriaKatherin extends javax.swing.JPanel {
                 if (!katherin.isNextToSquare(x + katherin.getWidth() / 2 - 10, y + katherin.getHeight() / 2)) {
                     space = true;
                     x -= 10;
-                    dir = "Images/K-L.jpeg";
+                    dir = "C:/Users/Camilo Cespedes/Documents/Universidad/Tercer semestre/Programacion orientada a objetos/Proyecto POO/Recursos/Personajes/K-L-Tes.png";
                 } else {
                     space = false;
                 }
@@ -78,7 +79,7 @@ public class HistoriaKatherin extends javax.swing.JPanel {
                 if (!katherin.isNextToSquare(x + katherin.getWidth() / 2 + 10, y + katherin.getHeight() / 2)) {
                     space = true;
                     x += 10;
-                    dir = "Images/K-R.jpeg";
+                    dir = "C:/Users/Camilo Cespedes/Documents/Universidad/Tercer semestre/Programacion orientada a objetos/Proyecto POO/Recursos/Personajes/K-R-Tes.png";
                 } else {
                     space = false;
                 }
@@ -87,8 +88,8 @@ public class HistoriaKatherin extends javax.swing.JPanel {
             case KeyEvent.VK_UP:
                 if (!katherin.isNextToSquare(x + katherin.getWidth() / 2, y + katherin.getHeight() / 2 - 10)) {
                     space = true;
-                    y -= 0;
-                    dir = "Images/K-B.jpeg";
+                    y -= 10;
+                    dir = "C:/Users/Camilo Cespedes/Documents/Universidad/Tercer semestre/Programacion orientada a objetos/Proyecto POO/Recursos/Personajes/K-B-Tes.png";
                 } else {
                     space = false;
                 }
@@ -98,7 +99,7 @@ public class HistoriaKatherin extends javax.swing.JPanel {
                 if (!katherin.isNextToSquare(x + katherin.getWidth() / 2 , y + katherin.getHeight() / 2 + 10)) {
                     space = true;
                     y += 10;
-                    dir = "Images/K-D.jpeg";
+                    dir = "C:/Users/Camilo Cespedes/Documents/Universidad/Tercer semestre/Programacion orientada a objetos/Proyecto POO/Recursos/Personajes/K-D-Tes.png";
                 } else {
                     space = false;
                 }
@@ -106,7 +107,9 @@ public class HistoriaKatherin extends javax.swing.JPanel {
                 break;
         }
         if(space){
-            katherin.Dibujar (this.getGraphics(), x, y, dir);
+             
+            
+            katherin.Dibujar(this.getGraphics(), x, y, dir);
         }
     }//GEN-LAST:event_formKeyPressed
 
