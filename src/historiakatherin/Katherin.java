@@ -25,8 +25,9 @@ public class Katherin extends Historia{
     public Katherin(HistoriaKatherin his) {
         areas = new ArrayList();
         this.hist = his;
-        x = 0; 
-        y = 0;
+        
+        x = 313; 
+        y = 222;
         addArea(new Area(230, 289, 523, 277));
         addArea(new Area(50, 180, 202, 598));
         addArea(new Area(843, 557, 520, 280));
@@ -37,10 +38,12 @@ public class Katherin extends Historia{
     public void Dibujar (Graphics g, int x, int y, String dir){
         this.x = x;
         this.y = y;
-        this.hist.update(g);
         ImageIcon imgKat = new ImageIcon(dir);
-        per.update(imgKat, x, y);
-        g.drawImage (imgKat.getImage(), x, y, hist);
+        hist.paint(g,imgKat.getImage(), x, y );
+        /*
+        //per.update(imgKat, x, y);
+        System.out.println("Si lo llama");
+        g.drawImage (imgKat.getImage(), x, y, hist);*/
         
     }
 
