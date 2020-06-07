@@ -8,9 +8,7 @@ package Interfaz;
 import Estado.Estado;
 import Resources.EfectoDeSonido;
 import java.util.ArrayList;
-import EstellarG.Dorothy;
-import EstellarG.Katherin;
-import EstellarG.Mary;
+import EstellarG.*;
 import java.awt.CardLayout;
 
 /**
@@ -30,12 +28,24 @@ public class Lienzo extends javax.swing.JPanel {
     Dorothy dorothy;
     CardLayout cl;
     public Lienzo() {
+        super();
         initComponents();
+        //setFocusable(true);
+        
+        inicio = new Inicio(Inicio);
+        ayuda = new Ayuda(Ayuda);
+        config = new Configuracion(Configuracion);
+        selec = new Seleccion(Seleccion);
+        katherin = new Katherin(historiaKatherin);
+        historiaKatherin.setKatherin(katherin);
         cl = (CardLayout)this.getLayout();
     }
     public void setFrame (VentanaDesarrollo frame){
         this.frame = frame;
+        //requestFocus();
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -65,39 +75,20 @@ public class Lienzo extends javax.swing.JPanel {
         VolInicio = new javax.swing.JButton();
         IrMary = new javax.swing.JButton();
         BCK4 = new javax.swing.JLabel();
-        HistoriaKatherin = new javax.swing.JPanel();
         HistoriaMary = new javax.swing.JPanel();
+        historiaKatherin = new Interfaz.HistoriaKatherin1();
         HistoriaDorothy = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        Inicio1 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        Ayuda1 = new javax.swing.JPanel();
-        Configuracion1 = new javax.swing.JPanel();
-        Seleccion1 = new javax.swing.JPanel();
-        HistoriaKatherin1 = new javax.swing.JPanel();
-        HistoriaMary1 = new javax.swing.JPanel();
-        HistoriaDorothy1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        Inicio2 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        Ayuda2 = new javax.swing.JPanel();
-        Configuracion2 = new javax.swing.JPanel();
-        Seleccion2 = new javax.swing.JPanel();
-        HistoriaKatherin2 = new javax.swing.JPanel();
-        HistoriaMary2 = new javax.swing.JPanel();
-        HistoriaDorothy2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        Inicio3 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
-        Ayuda3 = new javax.swing.JPanel();
-        Configuracion3 = new javax.swing.JPanel();
-        Seleccion3 = new javax.swing.JPanel();
-        HistoriaKatherin3 = new javax.swing.JPanel();
-        HistoriaMary3 = new javax.swing.JPanel();
-        HistoriaDorothy3 = new javax.swing.JPanel();
 
         setMaximumSize(new java.awt.Dimension(1400, 800));
         setMinimumSize(new java.awt.Dimension(1400, 800));
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                formFocusLost(evt);
+            }
+        });
         setLayout(new java.awt.CardLayout());
 
         Inicio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -225,6 +216,11 @@ public class Lienzo extends javax.swing.JPanel {
         IrKatherin.setContentAreaFilled(false);
         IrKatherin.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/b3-P.png"))); // NOI18N
         IrKatherin.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/b3-S.png"))); // NOI18N
+        IrKatherin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IrKatherinActionPerformed(evt);
+            }
+        });
         Seleccion.add(IrKatherin, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 220, -1, 330));
 
         VolInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/b12.png"))); // NOI18N
@@ -251,19 +247,6 @@ public class Lienzo extends javax.swing.JPanel {
 
         add(Seleccion, "SELECCION");
 
-        javax.swing.GroupLayout HistoriaKatherinLayout = new javax.swing.GroupLayout(HistoriaKatherin);
-        HistoriaKatherin.setLayout(HistoriaKatherinLayout);
-        HistoriaKatherinLayout.setHorizontalGroup(
-            HistoriaKatherinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1400, Short.MAX_VALUE)
-        );
-        HistoriaKatherinLayout.setVerticalGroup(
-            HistoriaKatherinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
-
-        add(HistoriaKatherin, "HISK");
-
         javax.swing.GroupLayout HistoriaMaryLayout = new javax.swing.GroupLayout(HistoriaMary);
         HistoriaMary.setLayout(HistoriaMaryLayout);
         HistoriaMaryLayout.setHorizontalGroup(
@@ -277,6 +260,21 @@ public class Lienzo extends javax.swing.JPanel {
 
         add(HistoriaMary, "HISM");
 
+        historiaKatherin.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                historiaKatherinFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                historiaKatherinFocusLost(evt);
+            }
+        });
+        historiaKatherin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                historiaKatherinKeyPressed(evt);
+            }
+        });
+        add(historiaKatherin, "KAT");
+
         javax.swing.GroupLayout HistoriaDorothyLayout = new javax.swing.GroupLayout(HistoriaDorothy);
         HistoriaDorothy.setLayout(HistoriaDorothyLayout);
         HistoriaDorothyLayout.setHorizontalGroup(
@@ -289,352 +287,11 @@ public class Lienzo extends javax.swing.JPanel {
         );
 
         add(HistoriaDorothy, "HISD");
-
-        jPanel1.setMaximumSize(new java.awt.Dimension(1400, 800));
-        jPanel1.setMinimumSize(new java.awt.Dimension(1400, 800));
-        jPanel1.setLayout(new java.awt.CardLayout());
-
-        jButton2.setText("jButton1");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout Inicio1Layout = new javax.swing.GroupLayout(Inicio1);
-        Inicio1.setLayout(Inicio1Layout);
-        Inicio1Layout.setHorizontalGroup(
-            Inicio1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Inicio1Layout.createSequentialGroup()
-                .addGap(438, 438, 438)
-                .addComponent(jButton2)
-                .addContainerGap(883, Short.MAX_VALUE))
-        );
-        Inicio1Layout.setVerticalGroup(
-            Inicio1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Inicio1Layout.createSequentialGroup()
-                .addGap(326, 326, 326)
-                .addComponent(jButton2)
-                .addContainerGap(449, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(Inicio1, "INICIO");
-
-        javax.swing.GroupLayout Ayuda1Layout = new javax.swing.GroupLayout(Ayuda1);
-        Ayuda1.setLayout(Ayuda1Layout);
-        Ayuda1Layout.setHorizontalGroup(
-            Ayuda1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1400, Short.MAX_VALUE)
-        );
-        Ayuda1Layout.setVerticalGroup(
-            Ayuda1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(Ayuda1, "AYUDA");
-
-        javax.swing.GroupLayout Configuracion1Layout = new javax.swing.GroupLayout(Configuracion1);
-        Configuracion1.setLayout(Configuracion1Layout);
-        Configuracion1Layout.setHorizontalGroup(
-            Configuracion1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1400, Short.MAX_VALUE)
-        );
-        Configuracion1Layout.setVerticalGroup(
-            Configuracion1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(Configuracion1, "CONFIG");
-
-        javax.swing.GroupLayout Seleccion1Layout = new javax.swing.GroupLayout(Seleccion1);
-        Seleccion1.setLayout(Seleccion1Layout);
-        Seleccion1Layout.setHorizontalGroup(
-            Seleccion1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1400, Short.MAX_VALUE)
-        );
-        Seleccion1Layout.setVerticalGroup(
-            Seleccion1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(Seleccion1, "SELECCION");
-
-        javax.swing.GroupLayout HistoriaKatherin1Layout = new javax.swing.GroupLayout(HistoriaKatherin1);
-        HistoriaKatherin1.setLayout(HistoriaKatherin1Layout);
-        HistoriaKatherin1Layout.setHorizontalGroup(
-            HistoriaKatherin1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1400, Short.MAX_VALUE)
-        );
-        HistoriaKatherin1Layout.setVerticalGroup(
-            HistoriaKatherin1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(HistoriaKatherin1, "HISK");
-
-        javax.swing.GroupLayout HistoriaMary1Layout = new javax.swing.GroupLayout(HistoriaMary1);
-        HistoriaMary1.setLayout(HistoriaMary1Layout);
-        HistoriaMary1Layout.setHorizontalGroup(
-            HistoriaMary1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1400, Short.MAX_VALUE)
-        );
-        HistoriaMary1Layout.setVerticalGroup(
-            HistoriaMary1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(HistoriaMary1, "HISM");
-
-        javax.swing.GroupLayout HistoriaDorothy1Layout = new javax.swing.GroupLayout(HistoriaDorothy1);
-        HistoriaDorothy1.setLayout(HistoriaDorothy1Layout);
-        HistoriaDorothy1Layout.setHorizontalGroup(
-            HistoriaDorothy1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1400, Short.MAX_VALUE)
-        );
-        HistoriaDorothy1Layout.setVerticalGroup(
-            HistoriaDorothy1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(HistoriaDorothy1, "HISD");
-
-        add(jPanel1, "card9");
-
-        jPanel2.setMaximumSize(new java.awt.Dimension(1400, 800));
-        jPanel2.setLayout(new java.awt.CardLayout());
-
-        jButton3.setText("jButton1");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout Inicio2Layout = new javax.swing.GroupLayout(Inicio2);
-        Inicio2.setLayout(Inicio2Layout);
-        Inicio2Layout.setHorizontalGroup(
-            Inicio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Inicio2Layout.createSequentialGroup()
-                .addGap(438, 438, 438)
-                .addComponent(jButton3)
-                .addContainerGap(883, Short.MAX_VALUE))
-        );
-        Inicio2Layout.setVerticalGroup(
-            Inicio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Inicio2Layout.createSequentialGroup()
-                .addGap(326, 326, 326)
-                .addComponent(jButton3)
-                .addContainerGap(449, Short.MAX_VALUE))
-        );
-
-        jPanel2.add(Inicio2, "INICIO");
-
-        javax.swing.GroupLayout Ayuda2Layout = new javax.swing.GroupLayout(Ayuda2);
-        Ayuda2.setLayout(Ayuda2Layout);
-        Ayuda2Layout.setHorizontalGroup(
-            Ayuda2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1400, Short.MAX_VALUE)
-        );
-        Ayuda2Layout.setVerticalGroup(
-            Ayuda2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
-
-        jPanel2.add(Ayuda2, "AYUDA");
-
-        javax.swing.GroupLayout Configuracion2Layout = new javax.swing.GroupLayout(Configuracion2);
-        Configuracion2.setLayout(Configuracion2Layout);
-        Configuracion2Layout.setHorizontalGroup(
-            Configuracion2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1400, Short.MAX_VALUE)
-        );
-        Configuracion2Layout.setVerticalGroup(
-            Configuracion2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
-
-        jPanel2.add(Configuracion2, "CONFIG");
-
-        javax.swing.GroupLayout Seleccion2Layout = new javax.swing.GroupLayout(Seleccion2);
-        Seleccion2.setLayout(Seleccion2Layout);
-        Seleccion2Layout.setHorizontalGroup(
-            Seleccion2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1400, Short.MAX_VALUE)
-        );
-        Seleccion2Layout.setVerticalGroup(
-            Seleccion2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
-
-        jPanel2.add(Seleccion2, "SELECCION");
-
-        javax.swing.GroupLayout HistoriaKatherin2Layout = new javax.swing.GroupLayout(HistoriaKatherin2);
-        HistoriaKatherin2.setLayout(HistoriaKatherin2Layout);
-        HistoriaKatherin2Layout.setHorizontalGroup(
-            HistoriaKatherin2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1400, Short.MAX_VALUE)
-        );
-        HistoriaKatherin2Layout.setVerticalGroup(
-            HistoriaKatherin2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
-
-        jPanel2.add(HistoriaKatherin2, "HISK");
-
-        javax.swing.GroupLayout HistoriaMary2Layout = new javax.swing.GroupLayout(HistoriaMary2);
-        HistoriaMary2.setLayout(HistoriaMary2Layout);
-        HistoriaMary2Layout.setHorizontalGroup(
-            HistoriaMary2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1400, Short.MAX_VALUE)
-        );
-        HistoriaMary2Layout.setVerticalGroup(
-            HistoriaMary2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
-
-        jPanel2.add(HistoriaMary2, "HISM");
-
-        javax.swing.GroupLayout HistoriaDorothy2Layout = new javax.swing.GroupLayout(HistoriaDorothy2);
-        HistoriaDorothy2.setLayout(HistoriaDorothy2Layout);
-        HistoriaDorothy2Layout.setHorizontalGroup(
-            HistoriaDorothy2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1400, Short.MAX_VALUE)
-        );
-        HistoriaDorothy2Layout.setVerticalGroup(
-            HistoriaDorothy2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
-
-        jPanel2.add(HistoriaDorothy2, "HISD");
-
-        jPanel3.setMaximumSize(new java.awt.Dimension(1400, 800));
-        jPanel3.setMinimumSize(new java.awt.Dimension(1400, 800));
-        jPanel3.setLayout(new java.awt.CardLayout());
-
-        jButton4.setText("jButton1");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout Inicio3Layout = new javax.swing.GroupLayout(Inicio3);
-        Inicio3.setLayout(Inicio3Layout);
-        Inicio3Layout.setHorizontalGroup(
-            Inicio3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Inicio3Layout.createSequentialGroup()
-                .addGap(438, 438, 438)
-                .addComponent(jButton4)
-                .addContainerGap(883, Short.MAX_VALUE))
-        );
-        Inicio3Layout.setVerticalGroup(
-            Inicio3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Inicio3Layout.createSequentialGroup()
-                .addGap(326, 326, 326)
-                .addComponent(jButton4)
-                .addContainerGap(449, Short.MAX_VALUE))
-        );
-
-        jPanel3.add(Inicio3, "INICIO");
-
-        javax.swing.GroupLayout Ayuda3Layout = new javax.swing.GroupLayout(Ayuda3);
-        Ayuda3.setLayout(Ayuda3Layout);
-        Ayuda3Layout.setHorizontalGroup(
-            Ayuda3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1400, Short.MAX_VALUE)
-        );
-        Ayuda3Layout.setVerticalGroup(
-            Ayuda3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
-
-        jPanel3.add(Ayuda3, "AYUDA");
-
-        javax.swing.GroupLayout Configuracion3Layout = new javax.swing.GroupLayout(Configuracion3);
-        Configuracion3.setLayout(Configuracion3Layout);
-        Configuracion3Layout.setHorizontalGroup(
-            Configuracion3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1400, Short.MAX_VALUE)
-        );
-        Configuracion3Layout.setVerticalGroup(
-            Configuracion3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
-
-        jPanel3.add(Configuracion3, "CONFIG");
-
-        javax.swing.GroupLayout Seleccion3Layout = new javax.swing.GroupLayout(Seleccion3);
-        Seleccion3.setLayout(Seleccion3Layout);
-        Seleccion3Layout.setHorizontalGroup(
-            Seleccion3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1400, Short.MAX_VALUE)
-        );
-        Seleccion3Layout.setVerticalGroup(
-            Seleccion3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
-
-        jPanel3.add(Seleccion3, "SELECCION");
-
-        javax.swing.GroupLayout HistoriaKatherin3Layout = new javax.swing.GroupLayout(HistoriaKatherin3);
-        HistoriaKatherin3.setLayout(HistoriaKatherin3Layout);
-        HistoriaKatherin3Layout.setHorizontalGroup(
-            HistoriaKatherin3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1400, Short.MAX_VALUE)
-        );
-        HistoriaKatherin3Layout.setVerticalGroup(
-            HistoriaKatherin3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
-
-        jPanel3.add(HistoriaKatherin3, "HISK");
-
-        javax.swing.GroupLayout HistoriaMary3Layout = new javax.swing.GroupLayout(HistoriaMary3);
-        HistoriaMary3.setLayout(HistoriaMary3Layout);
-        HistoriaMary3Layout.setHorizontalGroup(
-            HistoriaMary3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1400, Short.MAX_VALUE)
-        );
-        HistoriaMary3Layout.setVerticalGroup(
-            HistoriaMary3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
-
-        jPanel3.add(HistoriaMary3, "HISM");
-
-        javax.swing.GroupLayout HistoriaDorothy3Layout = new javax.swing.GroupLayout(HistoriaDorothy3);
-        HistoriaDorothy3.setLayout(HistoriaDorothy3Layout);
-        HistoriaDorothy3Layout.setHorizontalGroup(
-            HistoriaDorothy3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1400, Short.MAX_VALUE)
-        );
-        HistoriaDorothy3Layout.setVerticalGroup(
-            HistoriaDorothy3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
-
-        jPanel3.add(HistoriaDorothy3, "HISD");
-
-        jPanel2.add(jPanel3, "card9");
-
-        add(jPanel2, "card10");
     }// </editor-fold>//GEN-END:initComponents
 
     private void IrAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IrAyudaActionPerformed
         cl.show(this, "AYUDA");
     }//GEN-LAST:event_IrAyudaActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
 
     private void IrConfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IrConfiguracionActionPerformed
         cl.show(this, "CONFIG");
@@ -653,38 +310,47 @@ public class Lienzo extends javax.swing.JPanel {
     }//GEN-LAST:event_IrSeleccionActionPerformed
 
     private void VolInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolInicioActionPerformed
+        
         cl.show(this, "INICIO");
     }//GEN-LAST:event_VolInicioActionPerformed
+
+    private void IrKatherinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IrKatherinActionPerformed
+        cl.show(this, "KAT");
+        historiaKatherin.setRequestFocusEnabled(true);
+        historiaKatherin.grabFocus();
+    }//GEN-LAST:event_IrKatherinActionPerformed
+
+    private void historiaKatherinKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_historiaKatherinKeyPressed
+        System.out.println("corre");
+        //historiaKatherin.Pressed(evt);
+    }//GEN-LAST:event_historiaKatherinKeyPressed
+
+    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
+        System.out.println("Focus ganado");
+    }//GEN-LAST:event_formFocusGained
+
+    private void formFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusLost
+        System.out.println("Focus perdido");
+    }//GEN-LAST:event_formFocusLost
+
+    private void historiaKatherinFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_historiaKatherinFocusGained
+        System.out.println("Hist focus");
+    }//GEN-LAST:event_historiaKatherinFocusGained
+
+    private void historiaKatherinFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_historiaKatherinFocusLost
+        System.out.println("Hist sin focus");
+    }//GEN-LAST:event_historiaKatherinFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Ayuda;
-    private javax.swing.JPanel Ayuda1;
-    private javax.swing.JPanel Ayuda2;
-    private javax.swing.JPanel Ayuda3;
     private javax.swing.JLabel BCK1;
     private javax.swing.JLabel BCK3;
     private javax.swing.JLabel BCK4;
     private javax.swing.JPanel Configuracion;
-    private javax.swing.JPanel Configuracion1;
-    private javax.swing.JPanel Configuracion2;
-    private javax.swing.JPanel Configuracion3;
     private javax.swing.JPanel HistoriaDorothy;
-    private javax.swing.JPanel HistoriaDorothy1;
-    private javax.swing.JPanel HistoriaDorothy2;
-    private javax.swing.JPanel HistoriaDorothy3;
-    private javax.swing.JPanel HistoriaKatherin;
-    private javax.swing.JPanel HistoriaKatherin1;
-    private javax.swing.JPanel HistoriaKatherin2;
-    private javax.swing.JPanel HistoriaKatherin3;
     private javax.swing.JPanel HistoriaMary;
-    private javax.swing.JPanel HistoriaMary1;
-    private javax.swing.JPanel HistoriaMary2;
-    private javax.swing.JPanel HistoriaMary3;
     private javax.swing.JPanel Inicio;
-    private javax.swing.JPanel Inicio1;
-    private javax.swing.JPanel Inicio2;
-    private javax.swing.JPanel Inicio3;
     private javax.swing.JButton IrAyuda;
     private javax.swing.JButton IrConfiguracion;
     private javax.swing.JButton IrDorothy;
@@ -692,20 +358,12 @@ public class Lienzo extends javax.swing.JPanel {
     private javax.swing.JButton IrMary;
     private javax.swing.JButton IrSeleccion;
     private javax.swing.JPanel Seleccion;
-    private javax.swing.JPanel Seleccion1;
-    private javax.swing.JPanel Seleccion2;
-    private javax.swing.JPanel Seleccion3;
     private javax.swing.JButton VolInicio;
     private javax.swing.JButton VolvInicio;
     private javax.swing.JButton VolverInicio;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private Interfaz.HistoriaKatherin1 historiaKatherin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel tittle;
     // End of variables declaration//GEN-END:variables
 }

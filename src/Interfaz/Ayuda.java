@@ -5,10 +5,16 @@
  */
 package Interfaz;
 
+import javax.swing.JPanel;
+
 /**
  *
  * @author Camilo Cespedes
  */
 public class Ayuda {
+    JPanel ayuda;
+    Ayuda(JPanel Ayuda) {
+        ayuda = Ayuda;
+    }
     
 }

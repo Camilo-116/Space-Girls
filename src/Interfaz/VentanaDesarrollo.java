@@ -20,6 +20,7 @@ public class VentanaDesarrollo extends javax.swing.JFrame {
     Lienzo lienzo;
     Estado estado;
     public VentanaDesarrollo() {
+        super();
         initComponents();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Estellar G: Beta");
@@ -30,6 +31,9 @@ public class VentanaDesarrollo extends javax.swing.JFrame {
         revalidate();
         repaint();
         setVisible(true);
+        lienzo.setFocusable(true);
+        lienzo.setRequestFocusEnabled(true);
+        lienzo.grabFocus();
     }
 
     /*public void setEstado(Estado estado){

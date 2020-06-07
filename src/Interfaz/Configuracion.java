@@ -5,10 +5,17 @@
  */
 package Interfaz;
 
+import javax.swing.JPanel;
+
 /**
  *
  * @author Camilo Cespedes
  */
 public class Configuracion {
+    JPanel config;
+
+    public Configuracion(JPanel config) {
+        this.config = config;
+    }
     
 }

@@ -10,5 +10,9 @@ package EstellarG;
  * @author Camilo Cespedes
  */
 public class Mary {
+
+    public Mary() {
+        super();
+    }
     
 }

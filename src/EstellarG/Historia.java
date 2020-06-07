@@ -3,17 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interfaz;
+package EstellarG;
 
-import java.awt.Image;
-import javax.swing.JButton;
-import javax.swing.JPanel;
+import EstellarG.Area;
+import java.util.ArrayList;
 
 /**
  *
  * @author Camilo Cespedes
  */
-public class Button extends JButton{
-    Image bLook;
-    JPanel cont, sig;
+public abstract class Historia {
+    ArrayList<Area> areas;
+    
+    public ArrayList<Area> getAreas() {
+        return areas;
+    }
 }

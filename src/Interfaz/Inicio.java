@@ -5,10 +5,16 @@
  */
 package Interfaz;
 
+import javax.swing.JPanel;
+
 /**
  *
  * @author Camilo Cespedes
  */
 public class Inicio {
+    JPanel inicio;
+    public Inicio(JPanel panel) {
+        this.inicio = panel;
+    }
     
 }

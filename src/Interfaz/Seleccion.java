@@ -5,10 +5,17 @@
  */
 package Interfaz;
 
+import javax.swing.JPanel;
+
 /**
  *
  * @author Camilo Cespedes
  */
 public class Seleccion {
+    JPanel selec;
+
+    public Seleccion(JPanel selec) {
+        this.selec = selec;
+    }
     
 }
