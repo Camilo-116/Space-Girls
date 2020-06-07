@@ -5,8 +5,7 @@
  */
 package EstellarG;
 
-import Interfaz.HistoriaKatherin1;
-import Interfaz.Personaje;
+import Interfaz.*;
 import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -16,7 +15,7 @@ import javax.swing.*;
  * @author Camilo Cespedes
  */
 public class Katherin extends Historia{
-    HistoriaKatherin1 hist;
+    HistoriaKatherin histo;
     Personaje per;
     int x, y;
     int width, height;
@@ -24,9 +23,10 @@ public class Katherin extends Historia{
     Boolean colision = false, colTop = false, colBottom = false, colLeft = false, colRigth = false;
     
     
-    public Katherin(HistoriaKatherin1 his) {
+    
+    public Katherin(HistoriaKatherin histo) {
         areas = new ArrayList();
-        this.hist = his;
+        this.histo = histo;
         
         x = 313; 
         y = 222;
@@ -41,12 +41,7 @@ public class Katherin extends Historia{
         this.x = x;
         this.y = y;
         ImageIcon imgKat = new ImageIcon(dir);
-        hist.paint(g,imgKat.getImage(), x, y );
-        /*
-        //per.update(imgKat, x, y);
-        System.out.println("Si lo llama");
-        g.drawImage (imgKat.getImage(), x, y, hist);*/
-        
+        histo.paint(g,imgKat.getImage(), x, y );
     }
 
     public void setWidth(int width) {
