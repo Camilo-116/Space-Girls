@@ -23,6 +23,7 @@ public class MemoryBot extends javax.swing.JFrame {
 
     
     private LogicaMemoryBot log = new LogicaMemoryBot();
+    private HistoriaKatherin historiaK;
     private boolean caraUp = false;
     private ImageIcon Im1;
      private ImageIcon Im2;
@@ -30,17 +31,19 @@ public class MemoryBot extends javax.swing.JFrame {
      private boolean primerc= false;
      private int puntaje= 0;
      int xx=1;
-     int tiempo =0;
-     boolean ganar= false;
+     int tiempo =0, infinito = 0;
+     boolean ganar;
     
      /**
       * PlayGame<br>
       * Se inicializan los valores principales del juego cuando este es ejecutado. <br>
       */
-    public MemoryBot() {
+    public MemoryBot(HistoriaKatherin histK, Boolean win) {
         super();
         initComponents();
         setCards();
+        this.ganar = win;
+        this.historiaK = histK;
         Reset.setVisible(false);
         Time.setEnabled(false);
         Katherin.setVisible(false);
@@ -63,7 +66,7 @@ public class MemoryBot extends javax.swing.JFrame {
             @Override
             public void run(){
                 int x=0;
-                int infinito=0;
+                infinito=0;
             int c=0;
             while(infinito==0){
             try{
@@ -80,6 +83,7 @@ public class MemoryBot extends javax.swing.JFrame {
                if (tiempo==40){
                    if (ganar==false){
                        InfoT.setText("Perdiste, Intentalo de nuevo");
+                       Time.setText("40");
                        xx=1;
                    }
                }
@@ -205,6 +209,8 @@ public class MemoryBot extends javax.swing.JFrame {
             String comen = Integer.toString(comentario);
             InfoT2.setText(comen);
             conti.setVisible(true);
+            infinito = 1;
+            historiaK.setWin(1, true);
         }
     }
     

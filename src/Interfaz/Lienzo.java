@@ -210,6 +210,11 @@ public class Lienzo extends javax.swing.JPanel {
         IrDorothy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/b2-Invalid.png"))); // NOI18N
         IrDorothy.setContentAreaFilled(false);
         IrDorothy.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/b2-Invalid-S.png"))); // NOI18N
+        IrDorothy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IrDorothyActionPerformed(evt);
+            }
+        });
         Seleccion.add(IrDorothy, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 150, -1, 350));
 
         IrKatherin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/b3.png"))); // NOI18N
@@ -240,6 +245,11 @@ public class Lienzo extends javax.swing.JPanel {
         IrMary.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/b1-Invalid.png"))); // NOI18N
         IrMary.setContentAreaFilled(false);
         IrMary.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/b1-Invalid-S.png"))); // NOI18N
+        IrMary.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IrMaryActionPerformed(evt);
+            }
+        });
         Seleccion.add(IrMary, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, -1, 330));
 
         D1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/D1.png"))); // NOI18N
@@ -369,6 +379,16 @@ public class Lienzo extends javax.swing.JPanel {
     private void historiaKatherinFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_historiaKatherinFocusGained
         historiaKatherin.iniciarP();
     }//GEN-LAST:event_historiaKatherinFocusGained
+
+    private void IrDorothyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IrDorothyActionPerformed
+        Seleccion.setRequestFocusEnabled(true);
+        Seleccion.grabFocus();
+    }//GEN-LAST:event_IrDorothyActionPerformed
+
+    private void IrMaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IrMaryActionPerformed
+        Seleccion.setRequestFocusEnabled(true);
+        Seleccion.grabFocus();
+    }//GEN-LAST:event_IrMaryActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

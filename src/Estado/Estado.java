@@ -11,5 +11,5 @@ package Estado;
  */
 public enum Estado {
     INICIO, AYUDA, CONFIG, SELECCION,
-HISK, HISM, HISD;
+HISK, HISM, HISD, IN_DIALOG, NOT_IN_DIALOG;
 }

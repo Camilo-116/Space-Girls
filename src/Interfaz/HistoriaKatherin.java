@@ -11,6 +11,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import Estado.*;
 
 /**
  *
@@ -22,26 +23,29 @@ public class HistoriaKatherin extends javax.swing.JPanel {
     Personaje personaje;
     Boolean space = false;
     Boolean win[] = {false, false};
+    Estado estado;
     int alo = 0;
     int x;
     int y;
+    int tipo = 0;
     int cont = 2;
     String dir;
-    String dir2;
+    String lastDir;
     String user;
 
     public HistoriaKatherin() {
         super();
         initComponents();
+        this.estado = Estado.NOT_IN_DIALOG;
         setFocusable(true);
         BCK5_1.setVisible(true);
         katherin = new Katherin(this);
         x = katherin.getX();
         y = katherin.getY();
-        DK1.setVisible(true);
         DK2.setVisible(false);
         DK3.setVisible(false);
         user = System.getProperty("user.dir");
+        lastDir = user + "\\src\\Resources\\Images\\Katherin\\K-D.png";
         Excl1.setVisible(false);
         Excl2.setVisible(false);
         TestMB.setVisible(false);
@@ -148,97 +152,138 @@ public class HistoriaKatherin extends javax.swing.JPanel {
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         int key = evt.getKeyCode();
-        if (cont > 4) {
-            x = katherin.getX();
-            y = katherin.getY();
-            int type;
-            String dir = "", dir2 = "";
-            switch (key) {
-                case KeyEvent.VK_LEFT:
+        if (estado == Estado.NOT_IN_DIALOG) {
+            if (cont > 4) {
 
-                    if (y < 410 && y > 180) {
-                        if (!(x - 10 < 230)) {
-                            x -= 10;
-                        }
-                    } else {
-                        if (y < 675 && y > 411) {
-                            if (!(x - 10 < 519)) {
+                x = katherin.getX();
+                y = katherin.getY();
+                int type;
+                String dir = "", dir2 = "";
+                switch (key) {
+                    case KeyEvent.VK_LEFT:
+
+                        if (y < 410 && y > 180) {
+                            if (!(x - 10 < 230)) {
                                 x -= 10;
                             }
+                        } else {
+                            if (y < 675 && y > 411) {
+                                if (!(x - 10 < 519)) {
+                                    x -= 10;
+                                }
+                            }
                         }
-                    }
-                    dir = user + "\\src\\Resources\\Images\\Katherin\\K-L.png";
-                    break;
-                case KeyEvent.VK_RIGHT:
+                        dir = user + "\\src\\Resources\\Images\\Katherin\\K-L.png";
+                        lastDir = dir;
+                        break;
+                    case KeyEvent.VK_RIGHT:
 
-                    if (y < 410 && y > 180) {
-                        if (!(x + 10 > 1240)) {
-                            x += 10;
-                        }
-                    } else {
-                        if (y < 675 && y > 411) {
-                            if (!(x + 10 > 750)) {
+                        if (y < 410 && y > 180) {
+                            if (!(x + 10 > 1240)) {
                                 x += 10;
                             }
+                        } else {
+                            if (y < 675 && y > 411) {
+                                if (!(x + 10 > 750)) {
+                                    x += 10;
+                                }
+                            }
                         }
-                    }
-                    dir = user + "\\src\\Resources\\Images\\Katherin\\K-R.png";
-                    break;
-                case KeyEvent.VK_UP:
-                    if (!(y - 10 < 180)) {
-                        y -= 10;
-                    }
-                    dir = user + "\\src\\Resources\\Images\\Katherin\\K-B.png";
-                    break;
-                case KeyEvent.VK_DOWN:
-                    if ((x > 230 && x < 519) || (x > 750 && x < 1240)) {
-                        if (!(y + 10 > 411)) {
-                            y += 10;
+                        dir = user + "\\src\\Resources\\Images\\Katherin\\K-R.png";
+                        lastDir = dir;
+                        break;
+                    case KeyEvent.VK_UP:
+                        if (!(y - 10 < 180)) {
+                            y -= 10;
                         }
-                    } else {
-                        if (x > 518 && x < 751) {
-                            if (!(y + 10 > 620)) {
+                        dir = user + "\\src\\Resources\\Images\\Katherin\\K-B.png";
+                        lastDir = dir;
+                        break;
+                    case KeyEvent.VK_DOWN:
+                        if ((x > 230 && x < 519) || (x > 750 && x < 1240)) {
+                            if (!(y + 10 > 411)) {
                                 y += 10;
                             }
-                        }
-                    }
-                    dir = user + "\\src\\Resources\\Images\\Katherin\\K-D.png";
-                    break;
-                case KeyEvent.VK_SPACE:
-                    if (x > 1160 && x < 1280) {
-                        if (y > 160 && y < 190) {
-                            dir = user + "\\src\\Resources\\Images\\Katherin\\K-B.png";
-                            Excl1.setVisible(true);
-                            this.abrirPuzzle();
-                        }
-                    } else {
-                        if (y < 410 && y > 300) {
-                            if (x > 220 && x < 260) {
-                                dir = user + "\\src\\Resources\\Images\\Katherin\\K-L.png";
-                                Excl2.setVisible(true);
-                                this.abrirJuegoCartas();
+                        } else {
+                            if (x > 518 && x < 751) {
+                                if (!(y + 10 > 620)) {
+                                    y += 10;
+                                }
                             }
                         }
-                    }
-                    break;
-
-            }
-
-            katherin.Dibujar(this.getGraphics(), x, y, dir);
-        } else {
-            if (key == java.awt.event.KeyEvent.VK_SPACE) {
-                if (cont == 2) {
-                    DK1.setVisible(false);
-                    DK2.setVisible(true);
-                    cont++;
-                } else {
-                    if (cont == 3) {
-                        DK2.setVisible(false);
-                        DK3.setVisible(true);
+                        dir = user + "\\src\\Resources\\Images\\Katherin\\K-D.png";
+                        lastDir = dir;
+                        break;
+                    case KeyEvent.VK_SPACE:
+                        if (x > 1160 && x < 1280) {
+                            if (y > 160 && y < 190) {
+                                dir = user + "\\src\\Resources\\Images\\Katherin\\K-B.png";
+                                if (win[0] == false) {
+                                    estado = Estado.IN_DIALOG;
+                                    TestPT.setVisible(true);
+                                    tipo = 1;
+                                } else {
+                                    dir = user + "\\src\\Resources\\Images\\Katherin\\K-B.png";
+                                }
+                            }else{
+                                dir = lastDir;
+                            }
+                        } else {
+                            if (y < 410 && y > 300) {
+                                if (x > 220 && x < 260) {
+                                    dir = user + "\\src\\Resources\\Images\\Katherin\\K-L.png";
+                                    if (win[1] == false) {
+                                        estado = Estado.IN_DIALOG;
+                                        TestMB.setVisible(true);
+                                        tipo = 2;
+                                    } else {
+                                        dir = user + "\\src\\Resources\\Images\\Katherin\\K-L.png";
+                                    }
+                                } else {
+                                    dir = lastDir;
+                                }
+                            } else {
+                                dir = lastDir;
+                            }
+                        }
+                        break;
+                    default:
+                        dir = lastDir;
+                        break;
+                }
+                katherin.Dibujar(this.getGraphics(), x, y, dir);
+            } else {
+                if (key == java.awt.event.KeyEvent.VK_SPACE) {
+                    if (cont == 2) {
+                        DK1.setVisible(false);
+                        DK2.setVisible(true);
                         cont++;
                     } else {
-                        DK3.setVisible(false);
-                        cont++;
+                        if (cont == 3) {
+                            DK2.setVisible(false);
+                            DK3.setVisible(true);
+                            cont++;
+                        } else {
+                            DK3.setVisible(false);
+                            cont++;
+                        }
+                    }
+                }
+            }
+        } else {
+            if (estado == Estado.IN_DIALOG) {
+                if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+                    switch (tipo) {
+                        case 1:
+                            TestPT.setVisible(false);
+                            estado = Estado.NOT_IN_DIALOG;
+                            abrirPathFinder(win[0]);
+                            break;
+                        case 2:
+                            TestMB.setVisible(false);
+                            estado = Estado.NOT_IN_DIALOG;
+                            abrirMemoryBot(win[1]);
+                            break;
                     }
                 }
             }
@@ -266,14 +311,25 @@ public class HistoriaKatherin extends javax.swing.JPanel {
         katherin.Dibujar(this.getGraphics(), x, y, user + "\\src\\Resources\\Images\\Katherin\\K-D.png");
     }
 
-    private void abrirPuzzle() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void abrirPathFinder(Boolean win) {
+        if (estado == Estado.NOT_IN_DIALOG) {
+            PathFinder PT = new PathFinder(this, win);
+            PT.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+            PT.setLocationRelativeTo(null);
+            PT.setVisible(true);
+        }
     }
 
-    private void abrirJuegoCartas() {
-            MemoryBot MB = new MemoryBot();
+    public void setWin(int i, Boolean s) {
+        this.win[i] = s;
+    }
+
+    private void abrirMemoryBot(Boolean win) {
+        if (estado == Estado.NOT_IN_DIALOG) {
+            MemoryBot MB = new MemoryBot(this, win);
             MB.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
             MB.setLocationRelativeTo(null);
             MB.setVisible(true);
+        }
     }
 }
