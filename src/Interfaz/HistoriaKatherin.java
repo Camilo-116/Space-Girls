@@ -10,6 +10,7 @@ import com.sun.glass.events.KeyEvent;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 /**
  *
@@ -20,12 +21,14 @@ public class HistoriaKatherin extends javax.swing.JPanel {
     Katherin katherin;
     Personaje personaje;
     Boolean space = false;
+    Boolean win[] = {false, false};
     int alo = 0;
     int x;
     int y;
     int cont = 2;
     String dir;
     String dir2;
+    String user;
 
     public HistoriaKatherin() {
         super();
@@ -33,10 +36,17 @@ public class HistoriaKatherin extends javax.swing.JPanel {
         setFocusable(true);
         BCK5_1.setVisible(true);
         katherin = new Katherin(this);
-        personaje = new Personaje(katherin);
+        x = katherin.getX();
+        y = katherin.getY();
         DK1.setVisible(true);
         DK2.setVisible(false);
         DK3.setVisible(false);
+        user = System.getProperty("user.dir");
+        Excl1.setVisible(false);
+        Excl2.setVisible(false);
+        TestMB.setVisible(false);
+        TestPT.setVisible(false);
+        hilo.start();
     }
 
     public void paint(Graphics g, Image i, int x, int y) {
@@ -44,13 +54,49 @@ public class HistoriaKatherin extends javax.swing.JPanel {
         g.drawImage(i, x, y, null);
     }
 
+    Thread hilo = new Thread() {
+
+        public void run() {
+            int stop = 0;
+            while (stop == 0) {
+                try {
+                    if (x > 1160 && x < 1280) {
+                        if (y > 160 && y < 190) {
+                            Excl1.setVisible(true);
+                        } else {
+                            Excl1.setVisible(false);
+                        }
+                    } else {
+                        Excl1.setVisible(false);
+                    }
+                    if (y < 410 && y > 300) {
+                        if (x > 220 && x < 260) {
+                            Excl2.setVisible(true);
+                        } else {
+                            Excl2.setVisible(false);
+                        }
+                    } else {
+                        Excl2.setVisible(false);
+                    }
+                    Thread.sleep(300);
+                } catch (Exception e) {
+
+                }
+            }
+        }
+    };
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Excl1 = new javax.swing.JLabel();
+        Excl2 = new javax.swing.JLabel();
         DK1 = new javax.swing.JLabel();
         DK2 = new javax.swing.JLabel();
         DK3 = new javax.swing.JLabel();
+        TestMB = new javax.swing.JLabel();
+        TestPT = new javax.swing.JLabel();
         BCK5_1 = new javax.swing.JLabel();
         BCK5_2 = new javax.swing.JLabel();
 
@@ -66,14 +112,26 @@ public class HistoriaKatherin extends javax.swing.JPanel {
         });
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        Excl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/Exclamacion.png"))); // NOI18N
+        add(Excl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1270, 130, -1, -1));
+
+        Excl2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/Exclamacion.png"))); // NOI18N
+        add(Excl2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, -1, -1));
+
         DK1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/Katherin/DK1.png"))); // NOI18N
-        add(DK1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 250, -1, 270));
+        add(DK1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 300, -1, 210));
 
         DK2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/Katherin/DK2.png"))); // NOI18N
-        add(DK2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 250, -1, 270));
+        add(DK2, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 300, -1, 210));
 
         DK3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/Katherin/DK3.png"))); // NOI18N
-        add(DK3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 250, -1, 280));
+        add(DK3, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 300, -1, 210));
+
+        TestMB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/Katherin/TestMB.png"))); // NOI18N
+        add(TestMB, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 520, -1, -1));
+
+        TestPT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/Katherin/TestPT.png"))); // NOI18N
+        add(TestPT, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 520, -1, -1));
 
         BCK5_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/Katherin/officeK.jpg"))); // NOI18N
         add(BCK5_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -95,12 +153,6 @@ public class HistoriaKatherin extends javax.swing.JPanel {
             y = katherin.getY();
             int type;
             String dir = "", dir2 = "";
-
-            if (alo == 0) {
-                y += 10;
-                dir = "C:/Users/Camilo Cespedes/Documents/Universidad/Tercer semestre/Programacion orientada a objetos/Proyecto POO/Recursos/Personajes/K-D.png";
-                alo++;
-            }
             switch (key) {
                 case KeyEvent.VK_LEFT:
 
@@ -115,7 +167,7 @@ public class HistoriaKatherin extends javax.swing.JPanel {
                             }
                         }
                     }
-                    dir = "C:/Users/Camilo Cespedes/Documents/Universidad/Tercer semestre/Programacion orientada a objetos/Proyecto POO/Recursos/Personajes/K-L.png";
+                    dir = user + "\\src\\Resources\\Images\\Katherin\\K-L.png";
                     break;
                 case KeyEvent.VK_RIGHT:
 
@@ -130,13 +182,13 @@ public class HistoriaKatherin extends javax.swing.JPanel {
                             }
                         }
                     }
-                    dir = "C:/Users/Camilo Cespedes/Documents/Universidad/Tercer semestre/Programacion orientada a objetos/Proyecto POO/Recursos/Personajes/K-R.png";
+                    dir = user + "\\src\\Resources\\Images\\Katherin\\K-R.png";
                     break;
                 case KeyEvent.VK_UP:
                     if (!(y - 10 < 180)) {
                         y -= 10;
                     }
-                    dir = "C:/Users/Camilo Cespedes/Documents/Universidad/Tercer semestre/Programacion orientada a objetos/Proyecto POO/Recursos/Personajes/K-B.png";
+                    dir = user + "\\src\\Resources\\Images\\Katherin\\K-B.png";
                     break;
                 case KeyEvent.VK_DOWN:
                     if ((x > 230 && x < 519) || (x > 750 && x < 1240)) {
@@ -150,28 +202,28 @@ public class HistoriaKatherin extends javax.swing.JPanel {
                             }
                         }
                     }
-                    dir = "C:/Users/Camilo Cespedes/Documents/Universidad/Tercer semestre/Programacion orientada a objetos/Proyecto POO/Recursos/Personajes/K-D.png";
+                    dir = user + "\\src\\Resources\\Images\\Katherin\\K-D.png";
                     break;
                 case KeyEvent.VK_SPACE:
                     if (x > 1160 && x < 1280) {
                         if (y > 160 && y < 190) {
-
-                            dir = "C:/Users/Camilo Cespedes/Documents/Universidad/Tercer semestre/Programacion orientada a objetos/Proyecto POO/Recursos/Personajes/K-B.png";
-                            //this.abrirPuzzle();
-                            System.out.println("Abrir");
+                            dir = user + "\\src\\Resources\\Images\\Katherin\\K-B.png";
+                            Excl1.setVisible(true);
+                            this.abrirPuzzle();
                         }
                     } else {
                         if (y < 410 && y > 300) {
                             if (x > 220 && x < 260) {
-                                dir = "C:/Users/Camilo Cespedes/Documents/Universidad/Tercer semestre/Programacion orientada a objetos/Proyecto POO/Recursos/Personajes/K-L.png";
-                                //this.abrirJuegoCartas();
-                                System.out.println("Abrir");
+                                dir = user + "\\src\\Resources\\Images\\Katherin\\K-L.png";
+                                Excl2.setVisible(true);
+                                this.abrirJuegoCartas();
                             }
                         }
                     }
                     break;
 
             }
+
             katherin.Dibujar(this.getGraphics(), x, y, dir);
         } else {
             if (key == java.awt.event.KeyEvent.VK_SPACE) {
@@ -200,10 +252,18 @@ public class HistoriaKatherin extends javax.swing.JPanel {
     private javax.swing.JLabel DK1;
     private javax.swing.JLabel DK2;
     private javax.swing.JLabel DK3;
+    private javax.swing.JLabel Excl1;
+    private javax.swing.JLabel Excl2;
+    private javax.swing.JLabel TestMB;
+    private javax.swing.JLabel TestPT;
     // End of variables declaration//GEN-END:variables
 
     void setKatherin(Katherin katherin) {
         this.katherin = katherin;
+    }
+
+    public void iniciarP() {
+        katherin.Dibujar(this.getGraphics(), x, y, user + "\\src\\Resources\\Images\\Katherin\\K-D.png");
     }
 
     private void abrirPuzzle() {
@@ -211,6 +271,9 @@ public class HistoriaKatherin extends javax.swing.JPanel {
     }
 
     private void abrirJuegoCartas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            MemoryBot MB = new MemoryBot();
+            MB.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+            MB.setLocationRelativeTo(null);
+            MB.setVisible(true);
     }
 }
