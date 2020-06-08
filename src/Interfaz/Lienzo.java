@@ -349,11 +349,11 @@ public class Lienzo extends JPanel {
     }//GEN-LAST:event_IrKatherinActionPerformed
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
-        System.out.println("Focus ganado");
+       
     }//GEN-LAST:event_formFocusGained
 
     private void formFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusLost
-        System.out.println("Focus perdido");
+       
     }//GEN-LAST:event_formFocusLost
 
     private void VolverInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverInicioActionPerformed
@@ -365,7 +365,7 @@ public class Lienzo extends JPanel {
     }//GEN-LAST:event_SeleccionKeyTyped
 
     private void SeleccionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SeleccionFocusGained
-        System.out.println("Focus selec");
+       
     }//GEN-LAST:event_SeleccionFocusGained
 
     private void SeleccionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SeleccionKeyPressed

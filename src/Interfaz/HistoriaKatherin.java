@@ -182,8 +182,8 @@ public class HistoriaKatherin extends javax.swing.JPanel {
 
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        float x = evt.getX(), y = evt.getY();
-        System.out.println(x + " , " + y);
+        /*float x = evt.getX(), y = evt.getY();
+        System.out.println(x + " , " + y);*/
     }//GEN-LAST:event_formMouseClicked
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed

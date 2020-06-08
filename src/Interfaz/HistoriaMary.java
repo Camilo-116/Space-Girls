@@ -26,7 +26,6 @@ public class HistoriaMary extends javax.swing.JPanel {
     String dir2;
     String lastDir;
     String user;
-    Boolean volver = true;
     int cont = 2;
 
     public HistoriaMary() {
@@ -141,8 +140,8 @@ public class HistoriaMary extends javax.swing.JPanel {
 
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        float x = evt.getX(), y = evt.getY();
-        System.out.println(x + " , " + y);
+        /*float x = evt.getX(), y = evt.getY();
+        System.out.println(x + " , " + y);*/
     }//GEN-LAST:event_formMouseClicked
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
@@ -293,10 +292,7 @@ public class HistoriaMary extends javax.swing.JPanel {
                                     if (Obj5.isVisible() == true) {
                                         if (Obj6.isVisible() == true) {
                                             if (Obj7.isVisible() == true) {
-                                                if (volver){
-                                                    inventoryFilled();
-                                                    volver = false;
-                                                }
+                                                inventoryFilled();
                                             }
 
                                         }
