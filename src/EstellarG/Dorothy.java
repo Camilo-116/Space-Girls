@@ -9,7 +9,7 @@ package EstellarG;
  *
  * @author Camilo Cespedes
  */
-public class Dorothy extends Historia{
+public class Dorothy{
 
     public Dorothy() {
         super();

@@ -12,34 +12,35 @@ import EstellarG.*;
 import java.awt.CardLayout;
 import java.awt.event.KeyEvent;
 import javafx.scene.input.KeyCode;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Camilo Cespedes
  */
-public class Lienzo extends javax.swing.JPanel {
+public class Lienzo extends JPanel {
 
     ArrayList<EfectoDeSonido> efectos;
     VentanaDesarrollo frame;
-    Mary mary;
     Katherin katherin;
-    Inicio inicio;
-    Ayuda ayuda;
-    Configuracion config;
-    Seleccion selec;
+    JPanel inicio;
+    JPanel ayuda;
+    JPanel config;
+    JPanel selec;
     Dorothy dorothy;
     CardLayout cl;
+    Boolean historiasWin[] = {false, false};
     int cont = 2;
 
     public Lienzo() {
         super();
         initComponents();
-        inicio = new Inicio(Inicio);
-        ayuda = new Ayuda(Ayuda);
-        config = new Configuracion(Configuracion);
-        selec = new Seleccion(Seleccion);
-        katherin = new Katherin(historiaKatherin);
-        historiaKatherin.setKatherin(katherin);
+        inicio = Inicio;
+        ayuda = Ayuda;
+        config = Configuracion;
+        selec = Seleccion;
+        historiaKatherin.setLienzo(this);
+        historiaMary.setLienzo(this);
         cl = (CardLayout) this.getLayout();
         D1.setVisible(true);
         D2.setVisible(false);
@@ -47,10 +48,34 @@ public class Lienzo extends javax.swing.JPanel {
         
     }
 
+    public void setHistoriasWin(int i, Boolean s) {
+        historiasWin[i] = s;
+    }
+
     public void setFrame(VentanaDesarrollo frame) {
         this.frame = frame;
     }
 
+    public CardLayout getCl() {
+        return cl;
+    }
+
+    public JPanel getAyuda() {
+        return ayuda;
+    }
+
+    public JPanel getConfig() {
+        return config;
+    }
+
+    public JPanel getInicio() {
+        return Inicio;
+    }
+
+    public JPanel getSeleccion() {
+        return Seleccion;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,16 +98,16 @@ public class Lienzo extends javax.swing.JPanel {
         VolvInicio = new javax.swing.JButton();
         BCK3 = new javax.swing.JLabel();
         Seleccion = new javax.swing.JPanel();
-        IrDorothy = new javax.swing.JButton();
+        IrMary = new javax.swing.JButton();
         IrKatherin = new javax.swing.JButton();
         VolInicio = new javax.swing.JButton();
-        IrMary = new javax.swing.JButton();
+        IrDorothy = new javax.swing.JButton();
         D1 = new javax.swing.JLabel();
         D2 = new javax.swing.JLabel();
         D3 = new javax.swing.JLabel();
         BCK4 = new javax.swing.JLabel();
-        HistoriaMary = new javax.swing.JPanel();
         historiaKatherin = new Interfaz.HistoriaKatherin();
+        historiaMary = new Interfaz.HistoriaMary();
         HistoriaDorothy = new javax.swing.JPanel();
 
         setMaximumSize(new java.awt.Dimension(1400, 800));
@@ -207,15 +232,16 @@ public class Lienzo extends javax.swing.JPanel {
         });
         Seleccion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        IrDorothy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/b2-Invalid.png"))); // NOI18N
-        IrDorothy.setContentAreaFilled(false);
-        IrDorothy.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/b2-Invalid-S.png"))); // NOI18N
-        IrDorothy.addActionListener(new java.awt.event.ActionListener() {
+        IrMary.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/b2.png"))); // NOI18N
+        IrMary.setContentAreaFilled(false);
+        IrMary.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/b2-P.png"))); // NOI18N
+        IrMary.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/b2-S.png"))); // NOI18N
+        IrMary.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IrDorothyActionPerformed(evt);
+                IrMaryActionPerformed(evt);
             }
         });
-        Seleccion.add(IrDorothy, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 150, -1, 350));
+        Seleccion.add(IrMary, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 150, -1, 350));
 
         IrKatherin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/b3.png"))); // NOI18N
         IrKatherin.setContentAreaFilled(false);
@@ -242,15 +268,14 @@ public class Lienzo extends javax.swing.JPanel {
         });
         Seleccion.add(VolInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
-        IrMary.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/b1-Invalid.png"))); // NOI18N
-        IrMary.setContentAreaFilled(false);
-        IrMary.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/b1-Invalid-S.png"))); // NOI18N
-        IrMary.addActionListener(new java.awt.event.ActionListener() {
+        IrDorothy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/b1-Invalid.png"))); // NOI18N
+        IrDorothy.setContentAreaFilled(false);
+        IrDorothy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IrMaryActionPerformed(evt);
+                IrDorothyActionPerformed(evt);
             }
         });
-        Seleccion.add(IrMary, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, -1, 330));
+        Seleccion.add(IrDorothy, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, -1, 330));
 
         D1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/D1.png"))); // NOI18N
         Seleccion.add(D1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 480, -1, 270));
@@ -266,25 +291,13 @@ public class Lienzo extends javax.swing.JPanel {
 
         add(Seleccion, "SELECCION");
 
-        javax.swing.GroupLayout HistoriaMaryLayout = new javax.swing.GroupLayout(HistoriaMary);
-        HistoriaMary.setLayout(HistoriaMaryLayout);
-        HistoriaMaryLayout.setHorizontalGroup(
-            HistoriaMaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1402, Short.MAX_VALUE)
-        );
-        HistoriaMaryLayout.setVerticalGroup(
-            HistoriaMaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 802, Short.MAX_VALUE)
-        );
-
-        add(HistoriaMary, "HISM");
-
         historiaKatherin.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 historiaKatherinFocusGained(evt);
             }
         });
         add(historiaKatherin, "KATes");
+        add(historiaMary, "MARYes");
 
         javax.swing.GroupLayout HistoriaDorothyLayout = new javax.swing.GroupLayout(HistoriaDorothy);
         HistoriaDorothy.setLayout(HistoriaDorothyLayout);
@@ -325,7 +338,7 @@ public class Lienzo extends javax.swing.JPanel {
 
     private void IrKatherinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IrKatherinActionPerformed
         
-        if (cont > 3){
+        if (cont > 3 && historiasWin[0] == false){
             cl.show(this, "KATes");
             historiaKatherin.setRequestFocusEnabled(true);
             historiaKatherin.grabFocus();
@@ -380,15 +393,21 @@ public class Lienzo extends javax.swing.JPanel {
         historiaKatherin.iniciarP();
     }//GEN-LAST:event_historiaKatherinFocusGained
 
+    private void IrMaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IrMaryActionPerformed
+        if (cont > 3 && historiasWin[1] == false){
+            cl.show(this, "MARYes");
+            historiaMary.setRequestFocusEnabled(true);
+            historiaMary.grabFocus();
+        }else{
+            Seleccion.setRequestFocusEnabled(true);
+            Seleccion.grabFocus();
+        }
+    }//GEN-LAST:event_IrMaryActionPerformed
+
     private void IrDorothyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IrDorothyActionPerformed
         Seleccion.setRequestFocusEnabled(true);
         Seleccion.grabFocus();
     }//GEN-LAST:event_IrDorothyActionPerformed
-
-    private void IrMaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IrMaryActionPerformed
-        Seleccion.setRequestFocusEnabled(true);
-        Seleccion.grabFocus();
-    }//GEN-LAST:event_IrMaryActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -402,7 +421,6 @@ public class Lienzo extends javax.swing.JPanel {
     private javax.swing.JLabel D2;
     private javax.swing.JLabel D3;
     private javax.swing.JPanel HistoriaDorothy;
-    private javax.swing.JPanel HistoriaMary;
     private javax.swing.JPanel Inicio;
     private javax.swing.JButton IrAyuda;
     private javax.swing.JButton IrConfiguracion;
@@ -416,5 +434,6 @@ public class Lienzo extends javax.swing.JPanel {
     private javax.swing.JButton VolvInicio;
     private javax.swing.JButton VolverInicio;
     private Interfaz.HistoriaKatherin historiaKatherin;
+    private Interfaz.HistoriaMary historiaMary;
     // End of variables declaration//GEN-END:variables
 }

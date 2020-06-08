@@ -23,7 +23,7 @@ public class PathFinder extends javax.swing.JFrame {
     private int stop = 1;
     private int limiteT = 120;
     private int tiempo = 0;
-    private int c = 0;
+    private int c = 0, z;
 
     public PathFinder(HistoriaKatherin histK, Boolean win) {
 
@@ -287,7 +287,7 @@ public class PathFinder extends javax.swing.JFrame {
 
             while (infinito == 0) {
                 try {
-                    
+
                     if (stop == 0 && c > 11) {
                         txttiempo.setText(String.valueOf(tiempo++));
                     }
@@ -302,7 +302,7 @@ public class PathFinder extends javax.swing.JFrame {
     Thread hilo2 = new Thread() {
         @Override
         public void run() {
-            int z = 0;
+            z = 0;
             while (z == 0) {
                 try {
                     if (stop == 0) {
@@ -310,9 +310,10 @@ public class PathFinder extends javax.swing.JFrame {
                     }
                     if (stop == 0 && c > 5) {
                         ganar();
+
                     }
-                    
-                    if (tiempo ==31){
+
+                    if (tiempo == 31) {
                         stop = 1;
                         pausa.setVisible(false);
                         reiniciar.setVisible(true);
@@ -429,6 +430,10 @@ public class PathFinder extends javax.swing.JFrame {
                                         reiniciar.setVisible(true);
                                         conti.setVisible(true);
                                         histK.setWin(0, true);
+                                        if (histK.getWin(0) == true) {
+                                            System.out.println("la hace true");
+                                        }
+                                        z = 1;
                                     }
                                 }
                             }

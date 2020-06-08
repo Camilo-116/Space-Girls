@@ -192,7 +192,8 @@ public class MemoryBot extends javax.swing.JFrame {
         primerc= false;
         caraUp= false;
         puntaje =0;
-        InfoT.setText("Es momento de retar a tu memoria ¿Puedes hacerlo? ");
+        InfoT1.setText("Es momento de retar a tu memoria");
+        InfoT.setText("¿Puedes hacerlo? ");
         InfoT2.setText(" ");
         tiempo=0;
     }
@@ -211,6 +212,9 @@ public class MemoryBot extends javax.swing.JFrame {
             conti.setVisible(true);
             infinito = 1;
             historiaK.setWin(1, true);
+            if (historiaK.getWin(1) == true){
+                System.out.println("la hace true");
+            }
         }
     }
     
@@ -254,6 +258,7 @@ public class MemoryBot extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Juego Dos Caras");
+        setPreferredSize(new java.awt.Dimension(857, 1176));
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -552,7 +557,7 @@ public class MemoryBot extends javax.swing.JFrame {
         InfoT.setForeground(new java.awt.Color(255, 255, 255));
         InfoT.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         InfoT.setText("¿Puedes hacerlo?");
-        jPanel1.add(InfoT, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 490, 370, 50));
+        jPanel1.add(InfoT, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 490, 360, 50));
         InfoT.getAccessibleContext().setAccessibleName(" Es momento de retar a tu memoria");
 
         Reset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/MemoryBot/reiniciar.png"))); // NOI18N
@@ -621,7 +626,7 @@ public class MemoryBot extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -778,7 +783,9 @@ public class MemoryBot extends javax.swing.JFrame {
     }//GEN-LAST:event_InfoT2ActionPerformed
 
     private void contiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contiActionPerformed
-        this.dispose();
+        dispose();
+        this.historiaK.setRequestFocusEnabled(true);
+        historiaK.grabFocus();
     }//GEN-LAST:event_contiActionPerformed
 
     

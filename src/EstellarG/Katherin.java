@@ -14,9 +14,8 @@ import javax.swing.*;
  *
  * @author Camilo Cespedes
  */
-public class Katherin extends Historia{
+public class Katherin {
     HistoriaKatherin histo;
-    Personaje per;
     int x, y;
     int width, height;
     
@@ -25,16 +24,10 @@ public class Katherin extends Historia{
     
     
     public Katherin(HistoriaKatherin histo) {
-        areas = new ArrayList();
         this.histo = histo;
         
         x = 313; 
         y = 222;
-        addArea(new Area(230, 289, 523, 277));
-        addArea(new Area(50, 180, 202, 598));
-        addArea(new Area(843, 557, 520, 280));
-        addArea(new Area(989, 72, 428, 93));
-        addArea(new Area(993, 265, 201, 65));
     }
     
     public void Dibujar (Graphics g, int x, int y, String dir){
@@ -68,7 +61,7 @@ public class Katherin extends Historia{
         return y;
     }
     
-    public void addArea(Area a){
+    /*public void addArea(Area a){
         super.areas.add(a);
     }
 
@@ -82,7 +75,7 @@ public class Katherin extends Historia{
             }
         }
         return false;
-    }
+    }*/
     
     
    
