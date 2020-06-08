@@ -268,6 +268,12 @@ public class Lienzo extends javax.swing.JPanel {
         );
 
         add(HistoriaMary, "HISM");
+
+        historiaKatherin.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                historiaKatherinFocusGained(evt);
+            }
+        });
         add(historiaKatherin, "KATes");
 
         javax.swing.GroupLayout HistoriaDorothyLayout = new javax.swing.GroupLayout(HistoriaDorothy);
@@ -359,6 +365,10 @@ public class Lienzo extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_SeleccionKeyPressed
+
+    private void historiaKatherinFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_historiaKatherinFocusGained
+        historiaKatherin.iniciarP();
+    }//GEN-LAST:event_historiaKatherinFocusGained
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

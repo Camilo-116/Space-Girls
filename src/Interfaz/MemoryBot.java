@@ -38,6 +38,7 @@ public class MemoryBot extends javax.swing.JFrame {
       * Se inicializan los valores principales del juego cuando este es ejecutado. <br>
       */
     public MemoryBot() {
+        super();
         initComponents();
         setCards();
         Reset.setVisible(false);
@@ -46,6 +47,7 @@ public class MemoryBot extends javax.swing.JFrame {
         hilo1.start();
         InfoT2.setEnabled(false);
         InfoT2.setText("Calculando su puntaje...");
+        conti.setVisible(false);
     }
     
    /**
@@ -99,22 +101,22 @@ public class MemoryBot extends javax.swing.JFrame {
        
         int[] numbers = log.getCardNumbers();
      
-         Card1.setDisabledIcon(new ImageIcon(getClass().getResource("../imagenes/b"+numbers[0]+".png")));
-         Card2.setDisabledIcon(new ImageIcon(getClass().getResource("../imagenes/b"+numbers[1]+".png")));
-         Card3.setDisabledIcon(new ImageIcon(getClass().getResource("../imagenes/b"+numbers[2]+".png")));
-         Card4.setDisabledIcon(new ImageIcon(getClass().getResource("../imagenes/b"+numbers[3]+".png")));
-         Card5.setDisabledIcon(new ImageIcon(getClass().getResource("../imagenes/b"+numbers[4]+".png")));
-         Card6.setDisabledIcon(new ImageIcon(getClass().getResource("../imagenes/b"+numbers[5]+".png")));
-         Card7.setDisabledIcon(new ImageIcon(getClass().getResource("../imagenes/b"+numbers[6]+".png")));
-         Card8.setDisabledIcon(new ImageIcon(getClass().getResource("../imagenes/b"+numbers[7]+".png")));
-         Card9.setDisabledIcon(new ImageIcon(getClass().getResource("../imagenes/b"+numbers[8]+".png")));
-         Card10.setDisabledIcon(new ImageIcon(getClass().getResource("../imagenes/b"+numbers[9]+".png")));
-         Card11.setDisabledIcon(new ImageIcon(getClass().getResource("../imagenes/b"+numbers[10]+".png")));
-         Card12.setDisabledIcon(new ImageIcon(getClass().getResource("../imagenes/b"+numbers[11]+".png")));
-         Card13.setDisabledIcon(new ImageIcon(getClass().getResource("../imagenes/b"+numbers[12]+".png")));
-         Card14.setDisabledIcon(new ImageIcon(getClass().getResource("../imagenes/b"+numbers[13]+".png")));
-         Card15.setDisabledIcon(new ImageIcon(getClass().getResource("../imagenes/b"+numbers[14]+".png")));
-         Card16.setDisabledIcon(new ImageIcon(getClass().getResource("../imagenes/b"+numbers[15]+".png")));
+         Card1.setDisabledIcon(new ImageIcon(getClass().getResource("../Resources/Images/MemoryBot/b"+numbers[0]+".png")));
+         Card2.setDisabledIcon(new ImageIcon(getClass().getResource("../Resources/Images/MemoryBot/b"+numbers[1]+".png")));
+         Card3.setDisabledIcon(new ImageIcon(getClass().getResource("../Resources/Images/MemoryBot/b"+numbers[2]+".png")));
+         Card4.setDisabledIcon(new ImageIcon(getClass().getResource("../Resources/Images/MemoryBot/b"+numbers[3]+".png")));
+         Card5.setDisabledIcon(new ImageIcon(getClass().getResource("../Resources/Images/MemoryBot/b"+numbers[4]+".png")));
+         Card6.setDisabledIcon(new ImageIcon(getClass().getResource("../Resources/Images/MemoryBot/b"+numbers[5]+".png")));
+         Card7.setDisabledIcon(new ImageIcon(getClass().getResource("../Resources/Images/MemoryBot/b"+numbers[6]+".png")));
+         Card8.setDisabledIcon(new ImageIcon(getClass().getResource("../Resources/Images/MemoryBot/b"+numbers[7]+".png")));
+         Card9.setDisabledIcon(new ImageIcon(getClass().getResource("../Resources/Images/MemoryBot/b"+numbers[8]+".png")));
+         Card10.setDisabledIcon(new ImageIcon(getClass().getResource("../Resources/Images/MemoryBot/b"+numbers[9]+".png")));
+         Card11.setDisabledIcon(new ImageIcon(getClass().getResource("../Resources/Images/MemoryBot/b"+numbers[10]+".png")));
+         Card12.setDisabledIcon(new ImageIcon(getClass().getResource("../Resources/Images/MemoryBot/b"+numbers[11]+".png")));
+         Card13.setDisabledIcon(new ImageIcon(getClass().getResource("../Resources/Images/MemoryBot/b"+numbers[12]+".png")));
+         Card14.setDisabledIcon(new ImageIcon(getClass().getResource("../Resources/Images/MemoryBot/b"+numbers[13]+".png")));
+         Card15.setDisabledIcon(new ImageIcon(getClass().getResource("../Resources/Images/MemoryBot/b"+numbers[14]+".png")));
+         Card16.setDisabledIcon(new ImageIcon(getClass().getResource("../Resources/Images/MemoryBot/b"+numbers[15]+".png")));
              
     }
     /**
@@ -134,11 +136,11 @@ public class MemoryBot extends javax.swing.JFrame {
             
         } else{
             btn.setEnabled(false);
-             Im2= (ImageIcon) btn.getDisabledIcon();
-             pbtn[1]=btn;
+            Im2= (ImageIcon) btn.getDisabledIcon();
+            pbtn[1]=btn;
             primerc= true;
-           puntaje += 100;
-           pregwin();
+            puntaje += 100;
+            pregwin();
            
             
         }
@@ -158,7 +160,7 @@ public class MemoryBot extends javax.swing.JFrame {
                if (puntaje > 10) puntaje -= 50;
                 
             }
-             caraUp= false;
+            caraUp= false;
         }
         }
     }
@@ -197,10 +199,12 @@ public class MemoryBot extends javax.swing.JFrame {
         if (!Card1.isEnabled()&&!Card2.isEnabled()&&!Card3.isEnabled()&&!Card4.isEnabled()&&!Card5.isEnabled()&&!Card6.isEnabled()&&
                 !Card7.isEnabled()&&!Card8.isEnabled()&&!Card9.isEnabled()&&!Card10.isEnabled()&&!Card11.isEnabled()&&
                 !Card12.isEnabled()&&!Card13.isEnabled()&&!Card14.isEnabled()&&!Card15.isEnabled()&&!Card16.isEnabled()){
-             InfoT.setText("¡FELICIDADES! GANASTE");
+            InfoT1.setText("¡FELICIDADES! Realmente estás");
+            InfoT.setText("capacitad@ para esto");
             int comentario= puntaje;
             String comen = Integer.toString(comentario);
             InfoT2.setText(comen);
+            conti.setVisible(true);
         }
     }
     
@@ -240,6 +244,7 @@ public class MemoryBot extends javax.swing.JFrame {
         InfoT1 = new javax.swing.JLabel();
         T = new javax.swing.JLabel();
         Katherin = new javax.swing.JLabel();
+        conti = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Juego Dos Caras");
@@ -464,12 +469,12 @@ public class MemoryBot extends javax.swing.JFrame {
         });
         jPanel1.add(Card12, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 470, -1, -1));
 
-        Card13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/MemoryBot/bb.png"))); // NOI18N
+        Card13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/MemoryBot/b0.png"))); // NOI18N
         Card13.setBorder(null);
         Card13.setBorderPainted(false);
         Card13.setContentAreaFilled(false);
         Card13.setFocusable(false);
-        Card13.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/bb.png"))); // NOI18N
+        Card13.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/MemoryBot/bb.png"))); // NOI18N
         Card13.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 Card13MouseExited(evt);
@@ -505,7 +510,7 @@ public class MemoryBot extends javax.swing.JFrame {
         Card15.setBorderPainted(false);
         Card15.setContentAreaFilled(false);
         Card15.setFocusable(false);
-        Card15.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/bb.png"))); // NOI18N
+        Card15.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/MemoryBot/bb.png"))); // NOI18N
         Card15.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 Card15MouseExited(evt);
@@ -593,6 +598,18 @@ public class MemoryBot extends javax.swing.JFrame {
 
         Katherin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/MemoryBot/2.png"))); // NOI18N
         jPanel1.add(Katherin, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 590, -1, -1));
+
+        conti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/MemoryBot/Continuar.png"))); // NOI18N
+        conti.setToolTipText("");
+        conti.setContentAreaFilled(false);
+        conti.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/MemoryBot/Continuar-P.png"))); // NOI18N
+        conti.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/MemoryBot/Continuar-S.png"))); // NOI18N
+        conti.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contiActionPerformed(evt);
+            }
+        });
+        jPanel1.add(conti, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 550, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -754,46 +771,17 @@ public class MemoryBot extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_InfoT2ActionPerformed
 
+    private void contiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contiActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_contiActionPerformed
+
     
     
     
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MemoryBot.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MemoryBot.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MemoryBot.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MemoryBot.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MemoryBot().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Card1;
@@ -822,6 +810,7 @@ public class MemoryBot extends javax.swing.JFrame {
     private javax.swing.JLabel T;
     private javax.swing.JTextField Time;
     private javax.swing.JLabel TimeL;
+    private javax.swing.JButton conti;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
