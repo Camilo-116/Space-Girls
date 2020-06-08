@@ -10,6 +10,8 @@ import Resources.EfectoDeSonido;
 import java.util.ArrayList;
 import EstellarG.*;
 import java.awt.CardLayout;
+import java.awt.event.KeyEvent;
+import javafx.scene.input.KeyCode;
 
 /**
  *
@@ -27,6 +29,8 @@ public class Lienzo extends javax.swing.JPanel {
     Seleccion selec;
     Dorothy dorothy;
     CardLayout cl;
+    int cont = 2;
+
     public Lienzo() {
         super();
         initComponents();
@@ -36,13 +40,16 @@ public class Lienzo extends javax.swing.JPanel {
         selec = new Seleccion(Seleccion);
         katherin = new Katherin(historiaKatherin);
         historiaKatherin.setKatherin(katherin);
-        cl = (CardLayout)this.getLayout();
+        cl = (CardLayout) this.getLayout();
+        D1.setVisible(true);
+        D2.setVisible(false);
+        D3.setVisible(false);
+        
     }
-    public void setFrame (VentanaDesarrollo frame){
+
+    public void setFrame(VentanaDesarrollo frame) {
         this.frame = frame;
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -70,6 +77,9 @@ public class Lienzo extends javax.swing.JPanel {
         IrKatherin = new javax.swing.JButton();
         VolInicio = new javax.swing.JButton();
         IrMary = new javax.swing.JButton();
+        D1 = new javax.swing.JLabel();
+        D2 = new javax.swing.JLabel();
+        D3 = new javax.swing.JLabel();
         BCK4 = new javax.swing.JLabel();
         HistoriaMary = new javax.swing.JPanel();
         historiaKatherin = new Interfaz.HistoriaKatherin();
@@ -182,6 +192,19 @@ public class Lienzo extends javax.swing.JPanel {
         add(Configuracion, "CONFIG");
         Configuracion.getAccessibleContext().setAccessibleName("");
 
+        Seleccion.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                SeleccionFocusGained(evt);
+            }
+        });
+        Seleccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                SeleccionKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                SeleccionKeyTyped(evt);
+            }
+        });
         Seleccion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         IrDorothy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/b2-Invalid.png"))); // NOI18N
@@ -218,6 +241,15 @@ public class Lienzo extends javax.swing.JPanel {
         IrMary.setContentAreaFilled(false);
         IrMary.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/b1-Invalid-S.png"))); // NOI18N
         Seleccion.add(IrMary, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, -1, 330));
+
+        D1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/D1.png"))); // NOI18N
+        Seleccion.add(D1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 480, -1, 270));
+
+        D2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/D2.png"))); // NOI18N
+        Seleccion.add(D2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 470, -1, 280));
+
+        D3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/D3.png"))); // NOI18N
+        Seleccion.add(D3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 470, -1, 280));
 
         BCK4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/SeleccionE.png"))); // NOI18N
         Seleccion.add(BCK4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -266,17 +298,25 @@ public class Lienzo extends javax.swing.JPanel {
 
     private void IrSeleccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IrSeleccionActionPerformed
         cl.show(this, "SELECCION");
+        Seleccion.setRequestFocusEnabled(true);
+        Seleccion.grabFocus();
     }//GEN-LAST:event_IrSeleccionActionPerformed
 
     private void VolInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolInicioActionPerformed
-        
+
         cl.show(this, "INICIO");
     }//GEN-LAST:event_VolInicioActionPerformed
 
     private void IrKatherinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IrKatherinActionPerformed
-        cl.show(this, "KATes");
-        historiaKatherin.setRequestFocusEnabled(true);
-        historiaKatherin.grabFocus();
+        
+        if (cont > 3){
+            cl.show(this, "KATes");
+            historiaKatherin.setRequestFocusEnabled(true);
+            historiaKatherin.grabFocus();
+        }else{
+            Seleccion.setRequestFocusEnabled(true);
+            Seleccion.grabFocus();
+        }
     }//GEN-LAST:event_IrKatherinActionPerformed
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
@@ -291,6 +331,35 @@ public class Lienzo extends javax.swing.JPanel {
         cl.show(this, "INICIO");
     }//GEN-LAST:event_VolverInicioActionPerformed
 
+    private void SeleccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SeleccionKeyTyped
+        
+    }//GEN-LAST:event_SeleccionKeyTyped
+
+    private void SeleccionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_SeleccionFocusGained
+        System.out.println("Focus selec");
+    }//GEN-LAST:event_SeleccionFocusGained
+
+    private void SeleccionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SeleccionKeyPressed
+        int key = evt.getKeyCode();
+        if (key == KeyEvent.VK_SPACE) {
+            if (cont == 2) {
+                D1.setVisible(false);
+                D2.setVisible(true);
+                cont++;
+            } else {
+                if (cont == 3) {
+                    D2.setVisible(false);
+                    D3.setVisible(true);
+                    cont++;
+                } else {
+                    if (cont > 3) {
+                        D3.setVisible(false);
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_SeleccionKeyPressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Ayuda;
@@ -299,6 +368,9 @@ public class Lienzo extends javax.swing.JPanel {
     private javax.swing.JLabel BCK3;
     private javax.swing.JLabel BCK4;
     private javax.swing.JPanel Configuracion;
+    private javax.swing.JLabel D1;
+    private javax.swing.JLabel D2;
+    private javax.swing.JLabel D3;
     private javax.swing.JPanel HistoriaDorothy;
     private javax.swing.JPanel HistoriaMary;
     private javax.swing.JPanel Inicio;
