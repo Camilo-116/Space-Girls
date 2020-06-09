@@ -5,6 +5,7 @@
  */
 package Interfaz;
 
+import Estado.Estado;
 import com.sun.glass.events.KeyEvent;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -20,13 +21,15 @@ public class HistoriaMary extends javax.swing.JPanel {
     Mary mary;
     Lienzo lienzo;
     Boolean space = false;
+    Estado estado = Estado.NOT_IN_DIALOG;
     int x;
     int y;
     String dir;
     String dir2;
     String lastDir;
     String user;
-    int cont = 2;
+    Boolean objs[] = {false, false, false, false, false, false, false};
+    int cont = 2, tipo = 0;
 
     public HistoriaMary() {
         super();
@@ -39,9 +42,13 @@ public class HistoriaMary extends javax.swing.JPanel {
         user = System.getProperty("user.dir");
         lastDir = user + "\\src\\Resources\\Images\\Mary\\M-D.png";
         VolverSeleccion.setVisible(false);
+        FM.setVisible(false);
         DM1.setVisible(true);
         DM2.setVisible(false);
         DM3.setVisible(false);
+        OBFA.setVisible(false);
+        OBNF.setVisible(false);
+        OBF.setVisible(false);
         Obj1.setVisible(false);
         Obj2.setVisible(false);
         Obj3.setVisible(false);
@@ -60,6 +67,7 @@ public class HistoriaMary extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        FM = new javax.swing.JLabel();
         Obj2 = new javax.swing.JLabel();
         Obj7 = new javax.swing.JLabel();
         Obj3 = new javax.swing.JLabel();
@@ -70,10 +78,14 @@ public class HistoriaMary extends javax.swing.JPanel {
         DM1 = new javax.swing.JLabel();
         DM2 = new javax.swing.JLabel();
         DM3 = new javax.swing.JLabel();
+        OBF = new javax.swing.JLabel();
+        OBFA = new javax.swing.JLabel();
+        OBNF = new javax.swing.JLabel();
         VolverSeleccion = new javax.swing.JButton();
         BCK6 = new javax.swing.JLabel();
-        BCK7 = new javax.swing.JLabel();
 
+        setMaximumSize(new java.awt.Dimension(1400, 800));
+        setMinimumSize(new java.awt.Dimension(1400, 800));
         setPreferredSize(new java.awt.Dimension(1400, 800));
         addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -92,36 +104,48 @@ public class HistoriaMary extends javax.swing.JPanel {
         });
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        FM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/Mary/FM.png"))); // NOI18N
+        add(FM, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 320, -1, -1));
+
         Obj2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/Mary/Drill.png"))); // NOI18N
-        add(Obj2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 660, -1, -1));
+        add(Obj2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 644, -1, 100));
         Obj2.getAccessibleContext().setAccessibleName("Obj");
 
         Obj7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/Mary/jeringa.png"))); // NOI18N
-        add(Obj7, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 670, -1, -1));
+        add(Obj7, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 650, -1, 80));
 
         Obj3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/Mary/motor.png"))); // NOI18N
-        add(Obj3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 670, 70, 70));
+        add(Obj3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 650, 70, 80));
 
         Obj5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/Mary/panel.png"))); // NOI18N
-        add(Obj5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 670, -1, -1));
+        add(Obj5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 650, -1, 70));
 
         Obj1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/Mary/propulsor.jpg"))); // NOI18N
-        add(Obj1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 660, -1, -1));
+        add(Obj1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 640, -1, 100));
 
         Obj6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/Mary/tractor.png"))); // NOI18N
-        add(Obj6, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 670, 60, 60));
+        add(Obj6, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 650, 50, 60));
 
         Obj4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/Mary/ventana.png"))); // NOI18N
-        add(Obj4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 690, -1, 60));
+        add(Obj4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 670, -1, 70));
 
         DM1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/Mary/DM1.png"))); // NOI18N
-        add(DM1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 460, -1, -1));
+        add(DM1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 450, -1, -1));
 
         DM2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/Mary/DM2.png"))); // NOI18N
-        add(DM2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, -1, -1));
+        add(DM2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, -1, -1));
 
         DM3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/Mary/DM3.png"))); // NOI18N
-        add(DM3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, -1, -1));
+        add(DM3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, -1, -1));
+
+        OBF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/Mary/OBF.png"))); // NOI18N
+        add(OBF, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 450, -1, -1));
+
+        OBFA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/Mary/OBFA.png"))); // NOI18N
+        add(OBFA, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 450, -1, -1));
+
+        OBNF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/Mary/OBNF.png"))); // NOI18N
+        add(OBNF, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 450, -1, -1));
 
         VolverSeleccion.setText("Volver a Seleccion de personajes");
         VolverSeleccion.addActionListener(new java.awt.event.ActionListener() {
@@ -129,13 +153,10 @@ public class HistoriaMary extends javax.swing.JPanel {
                 VolverSeleccionActionPerformed(evt);
             }
         });
-        add(VolverSeleccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 390, 260, 60));
+        add(VolverSeleccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 310, 260, 60));
 
         BCK6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/Mary/OficinaMaryBarraFinal.jpg"))); // NOI18N
-        add(BCK6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1380, 790));
-
-        BCK7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/Mary/OficinaMaryBarraFinal.jpg"))); // NOI18N
-        add(BCK7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1380, 790));
+        add(BCK6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 1400, 800));
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -149,150 +170,223 @@ public class HistoriaMary extends javax.swing.JPanel {
         y = mary.getY();
         int type;
         dir = "";
+
         int key = evt.getKeyCode();
-        if (cont > 4) {
-            switch (key) {
-                case KeyEvent.VK_LEFT:
-                    if (y >= 270 && y <= 540) {
-                        if (!(x - 10 < 150)) {
-                            x -= 10;
-                        }
-                    } else {
-                        if (y >= 230 && y <= 270) {
-                            if (!(x - 10 < 360)) {
+        if (estado == Estado.NOT_IN_DIALOG) {
+            if (cont > 4) {
+                switch (key) {
+                    case KeyEvent.VK_LEFT:
+                        if (y >= 270 && y <= 540) {
+                            if (!(x - 10 < 150)) {
                                 x -= 10;
                             }
+                        } else {
+                            if (y >= 230 && y <= 270) {
+                                if (!(x - 10 < 360)) {
+                                    x -= 10;
+                                }
+                            }
                         }
-                    }
-                    dir = user + "\\src\\Resources\\Images\\Mary\\M-L.png";
-                    lastDir = dir;
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    if (y >= 230 && y <= 440) {
-                        if (!(x + 10 > 1250)) {
-                            x += 10;
-                        }
-                    } else {
-                        if (y >= 440 && y <= 540) {
-                            if (!(x + 10 > 850)) {
+                        dir = user + "\\src\\Resources\\Images\\Mary\\M-L.png";
+                        lastDir = dir;
+                        break;
+                    case KeyEvent.VK_RIGHT:
+                        if (y >= 230 && y <= 440) {
+                            if (!(x + 10 > 1250)) {
                                 x += 10;
                             }
-                        }
-                    }
-
-                    dir = user + "\\src\\Resources\\Images\\Mary\\M-R.png";
-                    lastDir = dir;
-                    break;
-                case KeyEvent.VK_UP:
-                    if (x >= 150 && x <= 350) {
-                        if (!(y - 10 < 270)) {
-                            y -= 10;
+                        } else {
+                            if (y >= 440 && y <= 540) {
+                                if (!(x + 10 > 850)) {
+                                    x += 10;
+                                }
+                            }
                         }
 
-                    } else {
-                        if (x >= 360 && x <= 1250) {
-                            if (!(y - 10 < 230)) {
+                        dir = user + "\\src\\Resources\\Images\\Mary\\M-R.png";
+                        lastDir = dir;
+                        break;
+                    case KeyEvent.VK_UP:
+                        if (x >= 150 && x <= 350) {
+                            if (!(y - 10 < 270)) {
                                 y -= 10;
+                            }
 
+                        } else {
+                            if (x >= 360 && x <= 1250) {
+                                if (!(y - 10 < 230)) {
+                                    y -= 10;
+
+                                }
                             }
                         }
-                    }
 
-                    dir = user + "\\src\\Resources\\Images\\Mary\\M-B.png";
-                    lastDir = dir;
-                    break;
-                case KeyEvent.VK_DOWN:
-                    if (x >= 150 && x <= 850) {
-                        if (!(y + 10 > 540)) {
-                            y += 10;
-                        }
-
-                    } else {
-                        if (x >= 850 && x <= 1250) {
-                            if (!(y + 10 > 440)) {
+                        dir = user + "\\src\\Resources\\Images\\Mary\\M-B.png";
+                        lastDir = dir;
+                        break;
+                    case KeyEvent.VK_DOWN:
+                        if (x >= 150 && x <= 850) {
+                            if (!(y + 10 > 540)) {
                                 y += 10;
+                            }
 
+                        } else {
+                            if (x >= 850 && x <= 1250) {
+                                if (!(y + 10 > 440)) {
+                                    y += 10;
+
+                                }
                             }
                         }
-                    }
 
-                    dir = user + "\\src\\Resources\\Images\\Mary\\M-D.png";
-                    lastDir = dir;
-                    break;
-                case KeyEvent.VK_SPACE:
-                    System.out.println(x + " , " + y);
-                    if (y == 440) {
-                        if (x >= 1050 && x <= 1130) {
-                            Obj1.setVisible(true);
-                            dir = user + "\\src\\Resources\\Images\\Mary\\M-D.png";
-                            lastDir = dir;
+                        dir = user + "\\src\\Resources\\Images\\Mary\\M-D.png";
+                        lastDir = dir;
+                        break;
+                    case KeyEvent.VK_SPACE:
+                        if (y == 440) {
+                            if (x >= 1050 && x <= 1130) {
+                                if (objs[0] == false) {
+                                    Obj1.setVisible(true);
+                                    OBF.setVisible(true);
+                                    estado = Estado.IN_DIALOG;
+                                    objs[0] = true;
+                                    tipo = 2;
+                                } else {
+                                    OBFA.setVisible(true);
+                                    estado = Estado.IN_DIALOG;
+                                    tipo = 1;
+                                }
+                                dir = user + "\\src\\Resources\\Images\\Mary\\M-D.png";
+                                lastDir = dir;
+                            }
+                        } else {
+                            dir = lastDir;
                         }
-                    } else {
-                        dir = lastDir;
-                    }
-                    if (y == 230) {
-                        if (x >= 630 && x <= 790) {
-                            Obj2.setVisible(true);
-                            dir = user + "\\src\\Resources\\Images\\Mary\\M-B.png";
-                            lastDir = dir;
+                        if (y == 230) {
+                            if (x >= 630 && x <= 790) {
+                                if (objs[1] == false) {
+                                    Obj2.setVisible(true);
+                                    OBF.setVisible(true);
+                                    estado = Estado.IN_DIALOG;
+                                    objs[1] = true;
+                                    tipo = 2;
+                                } else {
+                                    OBFA.setVisible(true);
+                                    estado = Estado.IN_DIALOG;
+                                    tipo = 1;
+                                }
+                                dir = user + "\\src\\Resources\\Images\\Mary\\M-B.png";
+                                lastDir = dir;
+                            }
+                        } else {
+                            dir = lastDir;
                         }
-                    } else {
-                        dir = lastDir;
-                    }
-                    if (y == 230) {
-                        if (x >= 1150 && x <= 1250) {
-                            Obj3.setVisible(true);
-                            dir = user + "\\src\\Resources\\Images\\Mary\\M-B.png";
-                            lastDir = dir;
+                        if (y == 230) {
+                            if (x >= 1150 && x <= 1250) {
+                                if (objs[2] == false) {
+                                    Obj3.setVisible(true);
+                                    OBF.setVisible(true);
+                                    estado = Estado.IN_DIALOG;
+                                    objs[2] = true;
+                                    tipo = 2;
+                                } else {
+                                    OBFA.setVisible(true);
+                                    estado = Estado.IN_DIALOG;
+                                    tipo = 1;
+                                }
+                                dir = user + "\\src\\Resources\\Images\\Mary\\M-B.png";
+                                lastDir = dir;
+                            }
+                        } else {
+                            dir = lastDir;
                         }
-                    } else {
-                        dir = lastDir;
-                    }
-                    if (x == 150) {
-                        if (y >= 500 && y <= 540) {
-                            Obj4.setVisible(true);
-                            dir = user + "\\src\\Resources\\Images\\Mary\\M-L.png";
-                            lastDir = dir;
+                        if (x == 150) {
+                            if (y >= 500 && y <= 540) {
+                                if (objs[3] == false) {
+                                    Obj4.setVisible(true);
+                                    OBF.setVisible(true);
+                                    estado = Estado.IN_DIALOG;
+                                    objs[3] = true;
+                                    tipo = 2;
+                                } else {
+                                    OBFA.setVisible(true);
+                                    estado = Estado.IN_DIALOG;
+                                    tipo = 1;
+                                }
+                                dir = user + "\\src\\Resources\\Images\\Mary\\M-L.png";
+                                lastDir = dir;
+                            }
+                        } else {
+                            dir = lastDir;
                         }
-                    } else {
-                        dir = lastDir;
-                    }
-                    if (y == 230) {
-                        if (x >= 360 && x <= 380) {
-                            Obj5.setVisible(true);
-                            dir = user + "\\src\\Resources\\Images\\Mary\\M-B.png";
-                            lastDir = dir;
+                        if (y == 230) {
+                            if (x >= 360 && x <= 380) {
+                                if (objs[4] == false) {
+                                    Obj5.setVisible(true);
+                                    OBF.setVisible(true);
+                                    estado = Estado.IN_DIALOG;
+                                    objs[4] = true;
+                                    tipo = 2;
+                                } else {
+                                    OBFA.setVisible(true);
+                                    estado = Estado.IN_DIALOG;
+                                    tipo = 1;
+                                }
+                                dir = user + "\\src\\Resources\\Images\\Mary\\M-B.png";
+                                lastDir = dir;
+                            }
+                        } else {
+                            dir = lastDir;
                         }
-                    } else {
-                        dir = lastDir;
-                    }
-                    if (y == 230) {
-                        if (x >= 900 && x <= 950) {
-                            Obj6.setVisible(true);
-                            dir = user + "\\src\\Resources\\Images\\Mary\\M-B.png";
-                            lastDir = dir;
+                        if (y == 230) {
+                            if (x >= 900 && x <= 950) {
+                                if (objs[5] == false) {
+                                    Obj6.setVisible(true);
+                                    OBF.setVisible(true);
+                                    estado = Estado.IN_DIALOG;
+                                    objs[5] = true;
+                                    tipo = 2;
+                                } else {
+                                    OBFA.setVisible(true);
+                                    estado = Estado.IN_DIALOG;
+                                    tipo = 1;
+                                }
+                                dir = user + "\\src\\Resources\\Images\\Mary\\M-B.png";
+                                lastDir = dir;
+                            }
+                        } else {
+                            dir = lastDir;
                         }
-                    } else {
-                        dir = lastDir;
-                    }
-                    if (x == 150) {
-                        if (y >= 270 && y <= 310) {
-                            Obj7.setVisible(true);
-                            dir = user + "\\src\\Resources\\Images\\Mary\\M-L.png";
-                            lastDir = dir;
+                        if (x == 150) {
+                            if (y >= 270 && y <= 310) {
+                                if (objs[6] == false) {
+                                    Obj7.setVisible(true);
+                                    OBF.setVisible(true);
+                                    estado = Estado.IN_DIALOG;
+                                    objs[6] = true;
+                                    tipo = 2;
+                                } else {
+                                    OBFA.setVisible(true);
+                                    estado = Estado.IN_DIALOG;
+                                    tipo = 1;
+                                }
+                                dir = user + "\\src\\Resources\\Images\\Mary\\M-L.png";
+                                lastDir = dir;
+                            }
+                        } else {
+                            dir = lastDir;
                         }
-                    } else {
-                        dir = lastDir;
-                    }
 
-                    if (Obj1.isVisible() == true) {
-                        if (Obj2.isVisible() == true) {
-                            if (Obj3.isVisible() == true) {
-                                if (Obj4.isVisible() == true) {
-                                    if (Obj5.isVisible() == true) {
-                                        if (Obj6.isVisible() == true) {
-                                            if (Obj7.isVisible() == true) {
-                                                inventoryFilled();
+                        if (Obj1.isVisible() == true) {
+                            if (Obj2.isVisible() == true) {
+                                if (Obj3.isVisible() == true) {
+                                    if (Obj4.isVisible() == true) {
+                                        if (Obj5.isVisible() == true) {
+                                            if (Obj6.isVisible() == true) {
+                                                if (Obj7.isVisible() == true && estado == Estado.NOT_IN_DIALOG) {
+                                                    inventoryFilled();
+                                                }
+
                                             }
 
                                         }
@@ -304,16 +398,14 @@ public class HistoriaMary extends javax.swing.JPanel {
                             }
 
                         }
+                        break;
+                    default:
+                        dir = lastDir;
+                        break;
 
-                    }
-                    break;
-                default:
-                    dir = lastDir;
-                    break;
-                    
-            }
-            mary.Dibujar(this.getGraphics(), x, y, dir);
-        }else {
+                }
+                mary.Dibujar(this.getGraphics(), x, y, dir);
+            } else {
                 if (key == java.awt.event.KeyEvent.VK_SPACE) {
                     if (cont == 2) {
                         DM1.setVisible(false);
@@ -331,8 +423,29 @@ public class HistoriaMary extends javax.swing.JPanel {
                     }
                 }
             }
-
-        
+        } else {
+            if (estado == Estado.IN_DIALOG) {
+                System.out.println("en dialogo");
+                if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+                    System.out.println("se presiona espacio");
+                    switch (tipo) {
+                        case 1:
+                            OBFA.setVisible(false);
+                            break;
+                        case 2:
+                            OBF.setVisible(false);
+                            break;
+                        case 3:
+                            FM.setVisible(false);
+                            lienzo.getCl().show(lienzo, "SELECCION");
+                            lienzo.getSeleccion().setRequestFocusEnabled(true);
+                            lienzo.getSeleccion().grabFocus();
+                            break;
+                    }
+                    estado = Estado.NOT_IN_DIALOG;
+                }
+            }
+        }
 
 
     }//GEN-LAST:event_formKeyPressed
@@ -354,10 +467,13 @@ public class HistoriaMary extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BCK6;
-    private javax.swing.JLabel BCK7;
     private javax.swing.JLabel DM1;
     private javax.swing.JLabel DM2;
     private javax.swing.JLabel DM3;
+    private javax.swing.JLabel FM;
+    private javax.swing.JLabel OBF;
+    private javax.swing.JLabel OBFA;
+    private javax.swing.JLabel OBNF;
     private javax.swing.JLabel Obj1;
     private javax.swing.JLabel Obj2;
     private javax.swing.JLabel Obj3;
@@ -369,7 +485,9 @@ public class HistoriaMary extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void inventoryFilled() {
-        VolverSeleccion.setVisible(true);
+        FM.setVisible(true);
+        estado = Estado.IN_DIALOG;
+        tipo = 3;
         lienzo.setHistoriasWin(1, true);
     }
 }
