@@ -112,6 +112,7 @@ public class Lienzo extends JPanel {
 
         setMaximumSize(new java.awt.Dimension(1400, 800));
         setMinimumSize(new java.awt.Dimension(1400, 800));
+        setPreferredSize(new java.awt.Dimension(1400, 800));
         addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 formFocusGained(evt);
@@ -122,6 +123,7 @@ public class Lienzo extends JPanel {
         });
         setLayout(new java.awt.CardLayout());
 
+        Inicio.setMaximumSize(new java.awt.Dimension(1400, 800));
         Inicio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         IrAyuda.setBackground(java.awt.SystemColor.text);
@@ -176,6 +178,7 @@ public class Lienzo extends JPanel {
 
         add(Inicio, "INICIO");
 
+        Ayuda.setMaximumSize(new java.awt.Dimension(1400, 800));
         Ayuda.setPreferredSize(new java.awt.Dimension(1400, 800));
         Ayuda.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -195,6 +198,7 @@ public class Lienzo extends JPanel {
 
         add(Ayuda, "AYUDA");
 
+        Configuracion.setMaximumSize(new java.awt.Dimension(1400, 800));
         Configuracion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         VolvInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/b12.png"))); // NOI18N
@@ -217,6 +221,7 @@ public class Lienzo extends JPanel {
         add(Configuracion, "CONFIG");
         Configuracion.getAccessibleContext().setAccessibleName("");
 
+        Seleccion.setMaximumSize(new java.awt.Dimension(1400, 800));
         Seleccion.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 SeleccionFocusGained(evt);
@@ -291,12 +296,16 @@ public class Lienzo extends JPanel {
 
         add(Seleccion, "SELECCION");
 
+        historiaKatherin.setMaximumSize(new java.awt.Dimension(1400, 800));
         historiaKatherin.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 historiaKatherinFocusGained(evt);
             }
         });
         add(historiaKatherin, "KATes");
+
+        historiaMary.setMaximumSize(new java.awt.Dimension(1400, 800));
+        historiaMary.setMinimumSize(new java.awt.Dimension(1400, 800));
         add(historiaMary, "MARYes");
 
         javax.swing.GroupLayout HistoriaDorothyLayout = new javax.swing.GroupLayout(HistoriaDorothy);

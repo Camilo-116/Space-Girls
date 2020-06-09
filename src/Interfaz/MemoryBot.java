@@ -192,6 +192,7 @@ public class MemoryBot extends javax.swing.JFrame {
         primerc= false;
         caraUp= false;
         puntaje =0;
+        Start.setVisible(true);
         InfoT1.setText("Es momento de retar a tu memoria");
         InfoT.setText("¿Puedes hacerlo? ");
         InfoT2.setText(" ");
@@ -602,7 +603,7 @@ public class MemoryBot extends javax.swing.JFrame {
         InfoT1.setFont(new java.awt.Font("Eras Bold ITC", 1, 18)); // NOI18N
         InfoT1.setForeground(new java.awt.Color(255, 255, 255));
         InfoT1.setText(" Es momento de retar a tu memoria");
-        jPanel1.add(InfoT1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 460, 370, 50));
+        jPanel1.add(InfoT1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 460, 360, 50));
 
         T.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/MemoryBot/N2-removebg-preview.png"))); // NOI18N
         jPanel1.add(T, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, -1, -1));
@@ -626,18 +627,14 @@ public class MemoryBot extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        setBounds(0, 0, 855, 871);
+        setBounds(0, 0, 844, 855);
     }// </editor-fold>//GEN-END:initComponents
 
     private void Card1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Card1ActionPerformed
