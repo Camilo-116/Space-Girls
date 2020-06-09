@@ -28,6 +28,12 @@ public class HistoriaKatherin extends javax.swing.JPanel {
     int y;
     int tipo = 0;
     int cont = 2;
+    int leg;
+    int contLeg;
+    int direct;
+    int mov;
+    int verif;
+    int infinito;
     String dir;
     String lastDir;
     String user;
@@ -54,12 +60,53 @@ public class HistoriaKatherin extends javax.swing.JPanel {
         NR2.setVisible(false);
         cercania.start();
         finished.start();
+        caminarKatherine.start();
     }
 
     public void paint(Graphics g, Image i, int x, int y) {
         super.paint(g);
         g.drawImage(i, x, y, null);
     }
+    public void dibujar(int x, int y, String dir){
+                    katherin.Dibujar(this.getGraphics(), x, y, dir);
+
+    }
+    Thread caminarKatherine = new Thread() {
+        @Override
+        public void run() {
+            infinito = 0;
+
+            while (infinito == 0) {
+                try {
+                    contLeg++;
+                    mov++;
+                    if (contLeg == 3) {
+                        if (direct == -1) {
+                            dir = user + "\\src\\Resources\\Images\\Katherin\\K-L.png";
+                            dibujar(x, y, dir);
+                        }
+                        if (direct == 1) {
+                            dir = user + "\\src\\Resources\\Images\\Katherin\\K-R.png";
+                            dibujar(x, y, dir);
+                        }
+                        if (direct == 2) {
+                            dir = user + "\\src\\Resources\\Images\\Katherin\\K-B.png";
+                            dibujar(x, y, dir);
+                        }
+                        if (direct == -2) {
+                            dir = user + "\\src\\Resources\\Images\\Katherin\\K-D.png";
+                            dibujar(x, y, dir);
+                        }
+
+                    }
+
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+
+                }
+            }
+        }
+    };
     Thread finished = new Thread() {
         public void run() {
             int seguir = 0;
@@ -181,9 +228,7 @@ public class HistoriaKatherin extends javax.swing.JPanel {
         /*float x = evt.getX(), y = evt.getY();
         System.out.println(x + " , " + y);*/
     }//GEN-LAST:event_formMouseClicked
-
-    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        int key = evt.getKeyCode();
+    public void movimiento(int key) {
         if (estado == Estado.NOT_IN_DIALOG) {
             if (cont > 4) {
                 x = katherin.getX();
@@ -204,7 +249,23 @@ public class HistoriaKatherin extends javax.swing.JPanel {
                                 }
                             }
                         }
-                        dir = user + "\\src\\Resources\\Images\\Katherin\\K-L.png";
+                        if (leg == 1) {
+                            dir = user + "\\src\\Resources\\Images\\Katherin\\K-L-1.png";
+                            mov = 0;
+                            contLeg = 0;
+                            direct = -1;
+                            leg = 2;
+                        } else {
+                            mov = 0;
+                            dir = user + "\\src\\Resources\\Images\\Katherin\\K-L-2.png";
+
+                            leg = 1;
+
+                            contLeg = 0;
+                            direct = -1;
+
+                        }
+
                         lastDir = dir;
                         break;
                     case KeyEvent.VK_RIGHT:
@@ -220,14 +281,44 @@ public class HistoriaKatherin extends javax.swing.JPanel {
                                 }
                             }
                         }
-                        dir = user + "\\src\\Resources\\Images\\Katherin\\K-R.png";
+                        if (leg == 1) {
+                            mov = 0;
+                            dir = user + "\\src\\Resources\\Images\\Katherin\\K-R-1.png";
+
+                            leg = 2;
+                            contLeg = 0;
+                            direct = 1;
+                        } else {
+                            mov = 0;
+                            dir = user + "\\src\\Resources\\Images\\Katherin\\K-R-2.png";
+
+                            leg = 1;
+                            contLeg = 0;
+                            direct = 1;
+                        }
+
                         lastDir = dir;
                         break;
                     case KeyEvent.VK_UP:
                         if (!(y - 10 < 180)) {
                             y -= 10;
                         }
-                        dir = user + "\\src\\Resources\\Images\\Katherin\\K-B.png";
+                        if (leg == 1) {
+                            mov = 0;
+                            dir = user + "\\src\\Resources\\Images\\Katherin\\K-B-1.png";
+
+                            leg = 2;
+                            contLeg = 0;
+                            direct = 2;
+                        } else {
+                            mov = 0;
+                            dir = user + "\\src\\Resources\\Images\\Katherin\\K-B-2.png";
+
+                            leg = 1;
+                            contLeg = 0;
+                            direct = 2;
+                        }
+                        //dir = user + "\\src\\Resources\\Images\\Katherin\\K-B.png";
                         lastDir = dir;
                         break;
                     case KeyEvent.VK_DOWN:
@@ -242,7 +333,22 @@ public class HistoriaKatherin extends javax.swing.JPanel {
                                 }
                             }
                         }
-                        dir = user + "\\src\\Resources\\Images\\Katherin\\K-D.png";
+                        if (leg == 1) {
+                            mov = 0;
+                            dir = user + "\\src\\Resources\\Images\\Katherin\\K-D-1.png";
+
+                            leg = 2;
+                            contLeg = 0;
+                            direct = -2;
+                        } else {
+                            mov = 0;
+                            dir = user + "\\src\\Resources\\Images\\Katherin\\K-D-2.png";
+
+                            leg = 1;
+                            contLeg = 0;
+                            direct = -2;
+                        }
+
                         lastDir = dir;
                         break;
                     case KeyEvent.VK_SPACE:
@@ -309,7 +415,7 @@ public class HistoriaKatherin extends javax.swing.JPanel {
             }
         } else {
             if (estado == Estado.IN_DIALOG) {
-                if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+                if (key == KeyEvent.VK_SPACE) {
                     switch (tipo) {
                         case 1:
                             TestPT.setVisible(false);
@@ -334,9 +440,30 @@ public class HistoriaKatherin extends javax.swing.JPanel {
                             lienzo.getCl().show(lienzo, "SELECCION");
                             lienzo.getSeleccion().setRequestFocusEnabled(true);
                             lienzo.getSeleccion().grabFocus();
+                            infinito = 1;
                             break;
                     }
                 }
+            }
+        }
+    }
+
+    public boolean isFast() {
+        if (mov <= 1) {
+            return true;
+        }
+        return false;
+    }
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        int key = evt.getKeyCode();
+        if (!isFast()) {
+
+            movimiento(evt.getKeyCode());
+        } else {
+            verif++;
+            if (verif == 6) {
+                verif = 0;
+                movimiento(evt.getKeyCode());
             }
         }
     }//GEN-LAST:event_formKeyPressed
