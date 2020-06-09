@@ -28,6 +28,12 @@ public class HistoriaMary extends javax.swing.JPanel {
     String dir2;
     String lastDir;
     String user;
+    private int infinito;
+    private int leg;
+    private int contLeg;
+    private int direct;
+    private int mov;
+    private int verif;
     Boolean objs[] = {false, false, false, false, false, false, false};
     int cont = 2, tipo = 0;
 
@@ -47,7 +53,6 @@ public class HistoriaMary extends javax.swing.JPanel {
         DM2.setVisible(false);
         DM3.setVisible(false);
         OBFA.setVisible(false);
-        OBNF.setVisible(false);
         OBF.setVisible(false);
         Obj1.setVisible(false);
         Obj2.setVisible(false);
@@ -56,12 +61,60 @@ public class HistoriaMary extends javax.swing.JPanel {
         Obj5.setVisible(false);
         Obj6.setVisible(false);
         Obj7.setVisible(false);
+        caminarMary.start();
     }
 
     public void paint(Graphics g, Image i, int x, int y) {
         super.paint(g);
         g.drawImage(i, x, y, null);
     }
+    public void dibujar(int x, int y, String dir) {
+        mary.Dibujar(this.getGraphics(), x, y, dir);
+
+    }
+    Thread caminarMary = new Thread() {
+        @Override
+        public void run() {
+            infinito = 0;
+
+            while (infinito == 0) {
+                try {
+                    contLeg++;
+                    mov++;
+                    if (contLeg == 3) {
+                        if (direct == -1) {
+                            dir = user + "\\src\\Resources\\Images\\Mary\\M-L.png";
+                            dibujar(x, y, dir);
+                        }
+                        if (direct == 1) {
+                            dir = user + "\\src\\Resources\\Images\\Mary\\M-R.png";
+                            dibujar(x, y, dir);
+                        }
+                        if (direct == 2) {
+                            dir = user + "\\src\\Resources\\Images\\Mary\\M-B.png";
+                            dibujar(x, y, dir);
+                        }
+                        if (direct == -2) {
+                            dir = user + "\\src\\Resources\\Images\\Mary\\M-D.png";
+                            dibujar(x, y, dir);
+                        }
+
+                    }
+
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+
+                }
+            }
+        }
+    };
+    private boolean isFast() {
+        if (mov <= 1) {
+            return true;
+        }
+        return false;
+    }
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -80,7 +133,6 @@ public class HistoriaMary extends javax.swing.JPanel {
         DM3 = new javax.swing.JLabel();
         OBF = new javax.swing.JLabel();
         OBFA = new javax.swing.JLabel();
-        OBNF = new javax.swing.JLabel();
         VolverSeleccion = new javax.swing.JButton();
         BCK6 = new javax.swing.JLabel();
 
@@ -144,9 +196,6 @@ public class HistoriaMary extends javax.swing.JPanel {
         OBFA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/Mary/OBFA.png"))); // NOI18N
         add(OBFA, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 450, -1, -1));
 
-        OBNF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Images/Mary/OBNF.png"))); // NOI18N
-        add(OBNF, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 450, -1, -1));
-
         VolverSeleccion.setText("Volver a Seleccion de personajes");
         VolverSeleccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,86 +213,143 @@ public class HistoriaMary extends javax.swing.JPanel {
         /*float x = evt.getX(), y = evt.getY();
         System.out.println(x + " , " + y);*/
     }//GEN-LAST:event_formMouseClicked
-
-    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+    public void movimiento(int key) {
         x = mary.getX();
         y = mary.getY();
         int type;
         dir = "";
 
-        int key = evt.getKeyCode();
         if (estado == Estado.NOT_IN_DIALOG) {
             if (cont > 4) {
                 switch (key) {
                     case KeyEvent.VK_LEFT:
-                        if (y >= 270 && y <= 540) {
+                        if (y >= 240 && y <= 510) {
                             if (!(x - 10 < 150)) {
                                 x -= 10;
                             }
                         } else {
-                            if (y >= 230 && y <= 270) {
+                            if (y >= 200 && y <= 240) {
                                 if (!(x - 10 < 360)) {
                                     x -= 10;
                                 }
                             }
                         }
-                        dir = user + "\\src\\Resources\\Images\\Mary\\M-L.png";
+                        if (leg == 1) {
+                            dir = user + "\\src\\Resources\\Images\\Mary\\M-L-L.png";
+                            mov = 0;
+                            contLeg = 0;
+                            direct = -1;
+                            leg = 2;
+                        } else {
+                            mov = 0;
+                            dir = user + "\\src\\Resources\\Images\\Mary\\M-L-R.png";
+
+                            leg = 1;
+
+                            contLeg = 0;
+                            direct = -1;
+
+                        }
+
                         lastDir = dir;
                         break;
                     case KeyEvent.VK_RIGHT:
-                        if (y >= 230 && y <= 440) {
+                        if (y >= 200 && y <= 410) {
                             if (!(x + 10 > 1250)) {
                                 x += 10;
                             }
                         } else {
-                            if (y >= 440 && y <= 540) {
+                            if (y >= 410 && y <= 510) {
                                 if (!(x + 10 > 850)) {
                                     x += 10;
                                 }
                             }
                         }
 
-                        dir = user + "\\src\\Resources\\Images\\Mary\\M-R.png";
+                        if (leg == 1) {
+                            mov = 0;
+                            dir = user + "\\src\\Resources\\Images\\Mary\\M-R-L.png";
+
+                            leg = 2;
+                            contLeg = 0;
+                            direct = 1;
+                        } else {
+                            mov = 0;
+                            dir = user + "\\src\\Resources\\Images\\Mary\\M-R-R.png";
+
+                            leg = 1;
+                            contLeg = 0;
+                            direct = 1;
+                        }
+
                         lastDir = dir;
                         break;
                     case KeyEvent.VK_UP:
                         if (x >= 150 && x <= 350) {
-                            if (!(y - 10 < 270)) {
+                            if (!(y - 10 < 240)) {
                                 y -= 10;
                             }
 
                         } else {
                             if (x >= 360 && x <= 1250) {
-                                if (!(y - 10 < 230)) {
+                                if (!(y - 10 < 200)) {
                                     y -= 10;
 
                                 }
                             }
                         }
+                        if (leg == 1) {
+                            mov = 0;
+                            dir = user + "\\src\\Resources\\Images\\Mary\\M-B-L.png";
 
-                        dir = user + "\\src\\Resources\\Images\\Mary\\M-B.png";
+                            leg = 2;
+                            contLeg = 0;
+                            direct = 2;
+                        } else {
+                            mov = 0;
+                            dir = user + "\\src\\Resources\\Images\\Mary\\M-B-R.png";
+
+                            leg = 1;
+                            contLeg = 0;
+                            direct = 2;
+                        }
+
                         lastDir = dir;
                         break;
                     case KeyEvent.VK_DOWN:
                         if (x >= 150 && x <= 850) {
-                            if (!(y + 10 > 540)) {
+                            if (!(y + 10 > 510)) {
                                 y += 10;
                             }
 
                         } else {
                             if (x >= 850 && x <= 1250) {
-                                if (!(y + 10 > 440)) {
+                                if (!(y + 10 > 410)) {
                                     y += 10;
 
                                 }
                             }
                         }
+                        if (leg == 1) {
+                            mov = 0;
+                            dir = user + "\\src\\Resources\\Images\\Mary\\M-D-L.png";
 
-                        dir = user + "\\src\\Resources\\Images\\Mary\\M-D.png";
+                            leg = 2;
+                            contLeg = 0;
+                            direct = -2;
+                        } else {
+                            mov = 0;
+                            dir = user + "\\src\\Resources\\Images\\Mary\\M-D-R.png";
+
+                            leg = 1;
+                            contLeg = 0;
+                            direct = -2;
+                        }
+
                         lastDir = dir;
                         break;
                     case KeyEvent.VK_SPACE:
-                        if (y == 440) {
+                        if (y == 410) {
                             if (x >= 1050 && x <= 1130) {
                                 if (objs[0] == false) {
                                     Obj1.setVisible(true);
@@ -262,7 +368,7 @@ public class HistoriaMary extends javax.swing.JPanel {
                         } else {
                             dir = lastDir;
                         }
-                        if (y == 230) {
+                        if (y == 200) {
                             if (x >= 630 && x <= 790) {
                                 if (objs[1] == false) {
                                     Obj2.setVisible(true);
@@ -281,7 +387,7 @@ public class HistoriaMary extends javax.swing.JPanel {
                         } else {
                             dir = lastDir;
                         }
-                        if (y == 230) {
+                        if (y == 200) {
                             if (x >= 1150 && x <= 1250) {
                                 if (objs[2] == false) {
                                     Obj3.setVisible(true);
@@ -301,7 +407,7 @@ public class HistoriaMary extends javax.swing.JPanel {
                             dir = lastDir;
                         }
                         if (x == 150) {
-                            if (y >= 500 && y <= 540) {
+                            if (y >= 470 && y <= 510) {
                                 if (objs[3] == false) {
                                     Obj4.setVisible(true);
                                     OBF.setVisible(true);
@@ -319,7 +425,7 @@ public class HistoriaMary extends javax.swing.JPanel {
                         } else {
                             dir = lastDir;
                         }
-                        if (y == 230) {
+                        if (y == 200) {
                             if (x >= 360 && x <= 380) {
                                 if (objs[4] == false) {
                                     Obj5.setVisible(true);
@@ -338,7 +444,7 @@ public class HistoriaMary extends javax.swing.JPanel {
                         } else {
                             dir = lastDir;
                         }
-                        if (y == 230) {
+                        if (y == 200) {
                             if (x >= 900 && x <= 950) {
                                 if (objs[5] == false) {
                                     Obj6.setVisible(true);
@@ -358,7 +464,7 @@ public class HistoriaMary extends javax.swing.JPanel {
                             dir = lastDir;
                         }
                         if (x == 150) {
-                            if (y >= 270 && y <= 310) {
+                            if (y >= 240 && y <= 280) {
                                 if (objs[6] == false) {
                                     Obj7.setVisible(true);
                                     OBF.setVisible(true);
@@ -426,7 +532,7 @@ public class HistoriaMary extends javax.swing.JPanel {
         } else {
             if (estado == Estado.IN_DIALOG) {
                 System.out.println("en dialogo");
-                if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+                if (key == KeyEvent.VK_SPACE) {
                     System.out.println("se presiona espacio");
                     switch (tipo) {
                         case 1:
@@ -440,10 +546,23 @@ public class HistoriaMary extends javax.swing.JPanel {
                             lienzo.getCl().show(lienzo, "SELECCION");
                             lienzo.getSeleccion().setRequestFocusEnabled(true);
                             lienzo.getSeleccion().grabFocus();
+                            infinito = 1;
                             break;
                     }
                     estado = Estado.NOT_IN_DIALOG;
                 }
+            }
+        }
+    }
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        if (!isFast()) {
+
+            movimiento(evt.getKeyCode());
+        } else {
+            verif++;
+            if (verif == 6) {
+                verif = 0;
+                movimiento(evt.getKeyCode());
             }
         }
 
@@ -473,7 +592,6 @@ public class HistoriaMary extends javax.swing.JPanel {
     private javax.swing.JLabel FM;
     private javax.swing.JLabel OBF;
     private javax.swing.JLabel OBFA;
-    private javax.swing.JLabel OBNF;
     private javax.swing.JLabel Obj1;
     private javax.swing.JLabel Obj2;
     private javax.swing.JLabel Obj3;
